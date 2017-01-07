@@ -1,0 +1,15 @@
+MODULE core
+	SUBMODULE core_cmd_decode
+		INSTANCE cmd_decode
+	SUBMODULE core_status_reg
+		INSTANCE status_reg
+	SUBMODULE compare_exact
+		INSTANCE comparator
+	SUBMODULE keygen_reg
+		INSTANCE XLXI_12
+	SUBMODULE run_control
+		INSTANCE XLXI_16
+	SUBMODULE keygen
+		INSTANCE XLXI_17
+	SUBMODULE rc5_decrypt_top
+		INSTANCE XLXI_18

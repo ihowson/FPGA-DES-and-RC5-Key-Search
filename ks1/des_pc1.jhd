@@ -1,0 +1,8 @@
+MODULE keysched
+   SUBMODULE pc1
+   SUBMODULE pc2
+MODULE ip
+MODULE xp
+MODULE desxor1
+MODULE pp
+MODULE desxor2

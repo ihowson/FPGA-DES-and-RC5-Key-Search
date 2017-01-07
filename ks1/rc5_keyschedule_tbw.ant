@@ -1,0 +1,204 @@
+-- C:\0908-DES
+-- VHDL Annotation Test Bench created by
+-- HDL Bencher 5.1i
+-- Thu Sep 18 19:27:10 2003
+
+LIBRARY  IEEE;
+USE IEEE.STD_LOGIC_1164.ALL;
+USE IEEE.STD_LOGIC_ARITH.ALL;
+USE IEEE.STD_LOGIC_UNSIGNED.ALL;
+
+LIBRARY ieee;
+USE IEEE.STD_LOGIC_TEXTIO.ALL;
+USE STD.TEXTIO.ALL;
+
+ENTITY testbench IS
+END testbench;
+
+ARCHITECTURE testbench_arch OF testbench IS
+-- If you get a compiler error on the following line,
+-- from the menu do Options->Configuration select VHDL 87
+FILE RESULTS: TEXT OPEN WRITE_MODE IS "c:\0908-des\rc5_keyschedule_tbw.ano";
+	COMPONENT rc5_keyschedule
+		PORT (
+			clk : in  std_logic;
+			run : in  std_logic;
+			key : in  std_logic_vector (71 DOWNTO 0);
+			ramwe : out  std_logic;
+			ramaddr : out  std_logic_vector (7 DOWNTO 0);
+			ramdin : out  std_logic_vector (31 DOWNTO 0);
+			ramdout : in  std_logic_vector (31 DOWNTO 0);
+			ramsel : out  std_logic
+		);
+	END COMPONENT;
+
+	SIGNAL clk : std_logic;
+	SIGNAL run : std_logic;
+	SIGNAL key : std_logic_vector (71 DOWNTO 0);
+	SIGNAL ramwe : std_logic;
+	SIGNAL ramaddr : std_logic_vector (7 DOWNTO 0);
+	SIGNAL ramdin : std_logic_vector (31 DOWNTO 0);
+	SIGNAL ramdout : std_logic_vector (31 DOWNTO 0);
+	SIGNAL ramsel : std_logic;
+
+BEGIN
+	UUT : rc5_keyschedule
+	PORT MAP (
+		clk => clk,
+		run => run,
+		key => key,
+		ramwe => ramwe,
+		ramaddr => ramaddr,
+		ramdin => ramdin,
+		ramdout => ramdout,
+		ramsel => ramsel
+	);
+
+	PROCESS -- clock process for clk,
+		VARIABLE TX_TIME : INTEGER :=0;
+
+		PROCEDURE ANNOTATE_ramwe(
+			TX_TIME : INTEGER
+		) IS
+			VARIABLE TX_STR : String(1 to 4096);
+			VARIABLE TX_LOC : LINE;
+		BEGIN
+			write(TX_LOC,string'("Annotate["));
+			write(TX_LOC, TX_TIME);
+			write(TX_LOC,string'(",ramwe,"));
+			write(TX_LOC, ramwe);
+			write(TX_LOC, string'("]"));
+			TX_STR(TX_LOC.all'range) := TX_LOC.all;
+			writeline(results, TX_LOC);
+			Deallocate(TX_LOC);
+		END;
+
+		PROCEDURE ANNOTATE_ramaddr(
+			TX_TIME : INTEGER
+		) IS
+			VARIABLE TX_STR : String(1 to 4096);
+			VARIABLE TX_LOC : LINE;
+		BEGIN
+			write(TX_LOC,string'("Annotate["));
+			write(TX_LOC, TX_TIME);
+			write(TX_LOC,string'(",ramaddr,"));
+			write(TX_LOC, ramaddr);
+			write(TX_LOC, string'("]"));
+			TX_STR(TX_LOC.all'range) := TX_LOC.all;
+			writeline(results, TX_LOC);
+			Deallocate(TX_LOC);
+		END;
+
+		PROCEDURE ANNOTATE_ramdin(
+			TX_TIME : INTEGER
+		) IS
+			VARIABLE TX_STR : String(1 to 4096);
+			VARIABLE TX_LOC : LINE;
+		BEGIN
+			write(TX_LOC,string'("Annotate["));
+			write(TX_LOC, TX_TIME);
+			write(TX_LOC,string'(",ramdin,"));
+			write(TX_LOC, ramdin);
+			write(TX_LOC, string'("]"));
+			TX_STR(TX_LOC.all'range) := TX_LOC.all;
+			writeline(results, TX_LOC);
+			Deallocate(TX_LOC);
+		END;
+
+		PROCEDURE ANNOTATE_ramsel(
+			TX_TIME : INTEGER
+		) IS
+			VARIABLE TX_STR : String(1 to 4096);
+			VARIABLE TX_LOC : LINE;
+		BEGIN
+			write(TX_LOC,string'("Annotate["));
+			write(TX_LOC, TX_TIME);
+			write(TX_LOC,string'(",ramsel,"));
+			write(TX_LOC, ramsel);
+			write(TX_LOC, string'("]"));
+			TX_STR(TX_LOC.all'range) := TX_LOC.all;
+			writeline(results, TX_LOC);
+			Deallocate(TX_LOC);
+		END;
+
+	BEGIN
+		CLOCK_LOOP : LOOP
+		clk <= transport '0';
+		WAIT FOR 2 ns;
+		TX_TIME := TX_TIME + 2;
+		clk <= transport '1';
+		WAIT FOR 2 ns;
+		TX_TIME := TX_TIME + 2;
+		ANNOTATE_ramwe(TX_TIME);
+		ANNOTATE_ramaddr(TX_TIME);
+		ANNOTATE_ramdin(TX_TIME);
+		ANNOTATE_ramsel(TX_TIME);
+		WAIT FOR 3 ns;
+		TX_TIME := TX_TIME + 3;
+		clk <= transport '0';
+		WAIT FOR 3 ns;
+		TX_TIME := TX_TIME + 3;
+		END LOOP CLOCK_LOOP;
+	END PROCESS;
+
+	PROCESS   -- Process for clk
+		VARIABLE TX_OUT : LINE;
+
+		BEGIN
+		-- --------------------
+		run <= transport '0';
+		key <= transport std_logic_vector'("110010010000110000000011010100111100000011010100111000011111111010000101"); --C90C0353C0D4E1FE85
+		ramdout <= transport std_logic_vector'("00000000000000000000000000000000"); --0
+		-- --------------------
+		WAIT FOR 150 ns; -- Time=150 ns
+		run <= transport '1';
+		ramdout <= transport std_logic_vector'("UUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUU"); --U
+		-- --------------------
+		WAIT FOR 10 ns; -- Time=160 ns
+		ramdout <= transport std_logic_vector'("UUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUU"); --U
+		-- --------------------
+		WAIT FOR 10 ns; -- Time=170 ns
+		ramdout <= transport std_logic_vector'("10110111111000010101000101100011"); --B7E15163
+		-- --------------------
+		WAIT FOR 20 ns; -- Time=190 ns
+		ramdout <= transport std_logic_vector'("XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX"); --X
+		-- --------------------
+		WAIT FOR 10 ns; -- Time=200 ns
+		ramdout <= transport std_logic_vector'("01010110000110001100101100011100"); --5618CB1C
+		-- --------------------
+		WAIT FOR 40 ns; -- Time=240 ns
+		ramdout <= transport std_logic_vector'("XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX"); --X
+		-- --------------------
+		WAIT FOR 10 ns; -- Time=250 ns
+		ramdout <= transport std_logic_vector'("11110100010100000100010011010101"); --F45044D5
+		-- --------------------
+		WAIT FOR 40 ns; -- Time=290 ns
+		ramdout <= transport std_logic_vector'("XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX"); --X
+		-- --------------------
+		WAIT FOR 10 ns; -- Time=300 ns
+		ramdout <= transport std_logic_vector'("10010010100001111011111010001110"); --9287BE8E
+		-- --------------------
+		WAIT FOR 40 ns; -- Time=340 ns
+		ramdout <= transport std_logic_vector'("XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX"); --X
+		-- --------------------
+		WAIT FOR 10 ns; -- Time=350 ns
+		ramdout <= transport std_logic_vector'("00110000101111110011100001000111"); --30BF3847
+		-- --------------------
+		WAIT FOR 40 ns; -- Time=390 ns
+		ramdout <= transport std_logic_vector'("XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX"); --X
+		-- --------------------
+		WAIT FOR 2104 ns; -- Time=2494 ns
+		-- --------------------
+
+		write(TX_OUT, string'("Total[]"));
+		writeline(results, TX_OUT);
+		ASSERT (FALSE) REPORT
+			"Success! Simulation for annotation completed"
+			SEVERITY FAILURE;
+	END PROCESS;
+END testbench_arch;
+
+CONFIGURATION rc5_keyschedule_cfg OF testbench IS
+	FOR testbench_arch
+	END FOR;
+END rc5_keyschedule_cfg;

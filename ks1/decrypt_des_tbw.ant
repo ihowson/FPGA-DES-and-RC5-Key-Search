@@ -1,0 +1,111 @@
+-- C:\0919-RC5
+-- VHDL Annotation Test Bench created by
+-- HDL Bencher 5.1i
+-- Wed Sep 24 11:11:05 2003
+
+LIBRARY  ieee;
+USE ieee.std_logic_1164.all;
+
+LIBRARY ieee;
+USE IEEE.STD_LOGIC_TEXTIO.ALL;
+USE STD.TEXTIO.ALL;
+
+ENTITY testbench IS
+END testbench;
+
+ARCHITECTURE testbench_arch OF testbench IS
+-- If you get a compiler error on the following line,
+-- from the menu do Options->Configuration select VHDL 87
+FILE RESULTS: TEXT OPEN WRITE_MODE IS "c:\0919-rc5\decrypt_des_tbw.ano";
+	COMPONENT decryptdes
+		PORT (
+			trial_key : in  std_logic_vector (63 DOWNTO 0);
+			run : in  std_logic;
+			ptext : out  std_logic_vector (63 DOWNTO 0);
+			ctext : in  std_logic_vector (63 DOWNTO 0);
+			clk : in  std_logic
+		);
+	END COMPONENT;
+
+	SIGNAL trial_key : std_logic_vector (63 DOWNTO 0);
+	SIGNAL run : std_logic;
+	SIGNAL ptext : std_logic_vector (63 DOWNTO 0);
+	SIGNAL ctext : std_logic_vector (63 DOWNTO 0);
+	SIGNAL clk : std_logic;
+
+BEGIN
+	UUT : decryptdes
+	PORT MAP (
+		trial_key => trial_key,
+		run => run,
+		ptext => ptext,
+		ctext => ctext,
+		clk => clk
+	);
+
+	PROCESS -- clock process for clk,
+		VARIABLE TX_TIME : INTEGER :=0;
+
+		PROCEDURE ANNOTATE_ptext(
+			TX_TIME : INTEGER
+		) IS
+			VARIABLE TX_STR : String(1 to 4096);
+			VARIABLE TX_LOC : LINE;
+		BEGIN
+			write(TX_LOC,string'("Annotate["));
+			write(TX_LOC, TX_TIME);
+			write(TX_LOC,string'(",ptext,"));
+			write(TX_LOC, ptext);
+			write(TX_LOC, string'("]"));
+			TX_STR(TX_LOC.all'range) := TX_LOC.all;
+			writeline(results, TX_LOC);
+			Deallocate(TX_LOC);
+		END;
+
+	BEGIN
+		CLOCK_LOOP : LOOP
+		clk <= transport '0';
+		WAIT FOR 2 ns;
+		TX_TIME := TX_TIME + 2;
+		clk <= transport '1';
+		WAIT FOR 2 ns;
+		TX_TIME := TX_TIME + 2;
+		ANNOTATE_ptext(TX_TIME);
+		WAIT FOR 3 ns;
+		TX_TIME := TX_TIME + 3;
+		clk <= transport '0';
+		WAIT FOR 3 ns;
+		TX_TIME := TX_TIME + 3;
+		END LOOP CLOCK_LOOP;
+	END PROCESS;
+
+	PROCESS   -- Process for clk
+		VARIABLE TX_OUT : LINE;
+
+		BEGIN
+		-- --------------------
+		-- --------------------
+		WAIT FOR 150 ns; -- Time=150 ns
+		trial_key <= transport std_logic_vector'("0000000000010010001101000101011001111000100110101011110111101111"); --123456789ABDEF
+		run <= transport '1';
+		ctext <= transport std_logic_vector'("0000000100100011010001010110011110001001101010111100110111101111"); --123456789ABCDEF
+		-- --------------------
+		WAIT FOR 10 ns; -- Time=160 ns
+		trial_key <= transport std_logic_vector'("ZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZ"); --Z
+		ctext <= transport std_logic_vector'("ZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZ"); --Z
+		-- --------------------
+		WAIT FOR 194 ns; -- Time=354 ns
+		-- --------------------
+
+		write(TX_OUT, string'("Total[]"));
+		writeline(results, TX_OUT);
+		ASSERT (FALSE) REPORT
+			"Success! Simulation for annotation completed"
+			SEVERITY FAILURE;
+	END PROCESS;
+END testbench_arch;
+
+CONFIGURATION decryptdes_cfg OF testbench IS
+	FOR testbench_arch
+	END FOR;
+END decryptdes_cfg;

@@ -1,0 +1,10 @@
+select figure at 1886 1658 10 -branches -sn=1
+select figure at 1886 1658 10 -branches -extend -extend -sn=1
+select figure at 2290 1500 10 -branches -sn=1
+select figure at 2290 1500 10 -branches -extend -extend -sn=1
+select figure at 543 639 19 -branches -sn=1
+select figure at 543 639 19 -branches -extend -extend -sn=1
+select figure at 869 1703 19 -branches -sn=1
+select figure at 869 1703 19 -branches -extend -extend -sn=1
+move instance at 1104 1568 to 2048 1968 R180 -keepConn -sn=1
+move instance at 2048 1968 to 1728 1696 R180 -keepConn -sn=1

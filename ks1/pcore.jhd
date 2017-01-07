@@ -1,0 +1,15 @@
+MODULE pcore
+	SUBMODULE keybuffer
+		INSTANCE keybuf
+	SUBMODULE status_reg
+		INSTANCE statusreg
+	SUBMODULE core_controller
+		INSTANCE corecon
+	SUBMODULE addr_terminate
+		INSTANCE addrterminate
+	SUBMODULE unused_terminate
+		INSTANCE XLXI_14
+	SUBMODULE search_units
+		INSTANCE XLXI_18
+	SUBMODULE status_pulldown
+		INSTANCE XLXI_19

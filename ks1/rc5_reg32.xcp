@@ -1,0 +1,13 @@
+# Xilinx CORE Generator 5.2.03i
+SELECT FD-based_Parallel_Register Virtex Xilinx,_Inc. 6.0
+CSET data_width = 32
+CSET async_init_value = FFFFFFFF
+CSET set_clear_priority = clear_overrides_set
+CSET ce_overrides = ce_overrides_sync_controls
+CSET sync_init_value = 0
+CSET clock_enable = true
+CSET create_rpm = true
+CSET asynchronous_settings = none
+CSET synchronous_settings = set_and_clear
+CSET component_name = rc5_reg32
+GENERATE

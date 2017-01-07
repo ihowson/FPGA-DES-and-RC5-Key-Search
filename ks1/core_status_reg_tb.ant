@@ -1,0 +1,115 @@
+-- C:\ISE\PIL-KEY-SEARCH
+-- VHDL Annotation Test Bench created by
+-- HDL Bencher 5.1i
+-- Tue Jul 29 20:14:42 2003
+
+LIBRARY  IEEE;
+USE IEEE.STD_LOGIC_1164.ALL;
+USE IEEE.STD_LOGIC_ARITH.ALL;
+USE IEEE.STD_LOGIC_UNSIGNED.ALL;
+
+LIBRARY ieee;
+USE IEEE.STD_LOGIC_TEXTIO.ALL;
+USE STD.TEXTIO.ALL;
+
+ENTITY testbench IS
+END testbench;
+
+ARCHITECTURE testbench_arch OF testbench IS
+-- If you get a compiler error on the following line,
+-- from the menu do Options->Configuration select VHDL 87
+FILE RESULTS: TEXT OPEN WRITE_MODE IS "c:\ise\pil-key-search\core_status_reg_tb.ano";
+	COMPONENT core_status_reg
+		PORT (
+			clk : in  std_logic;
+			read : in  std_logic;
+			running : in  std_logic;
+			status : out  std_logic_vector (1 DOWNTO 0)
+		);
+	END COMPONENT;
+
+	SIGNAL clk : std_logic;
+	SIGNAL read : std_logic;
+	SIGNAL running : std_logic;
+	SIGNAL status : std_logic_vector (1 DOWNTO 0);
+
+BEGIN
+	UUT : core_status_reg
+	PORT MAP (
+		clk => clk,
+		read => read,
+		running => running,
+		status => status
+	);
+
+	PROCESS -- clock process for clk,
+		VARIABLE TX_TIME : INTEGER :=0;
+
+		PROCEDURE ANNOTATE_status(
+			TX_TIME : INTEGER
+		) IS
+			VARIABLE TX_STR : String(1 to 4096);
+			VARIABLE TX_LOC : LINE;
+		BEGIN
+			write(TX_LOC,string'("Annotate["));
+			write(TX_LOC, TX_TIME);
+			write(TX_LOC,string'(",status,"));
+			write(TX_LOC, status);
+			write(TX_LOC, string'("]"));
+			TX_STR(TX_LOC.all'range) := TX_LOC.all;
+			writeline(results, TX_LOC);
+			Deallocate(TX_LOC);
+		END;
+
+	BEGIN
+		CLOCK_LOOP : LOOP
+		clk <= transport '0';
+		WAIT FOR 2 ns;
+		TX_TIME := TX_TIME + 2;
+		clk <= transport '1';
+		WAIT FOR 2 ns;
+		TX_TIME := TX_TIME + 2;
+		ANNOTATE_status(TX_TIME);
+		WAIT FOR 3 ns;
+		TX_TIME := TX_TIME + 3;
+		clk <= transport '0';
+		WAIT FOR 3 ns;
+		TX_TIME := TX_TIME + 3;
+		END LOOP CLOCK_LOOP;
+	END PROCESS;
+
+	PROCESS   -- Process for clk
+		VARIABLE TX_OUT : LINE;
+
+		BEGIN
+		-- --------------------
+		read <= transport '0';
+		running <= transport '0';
+		-- --------------------
+		WAIT FOR 10 ns; -- Time=10 ns
+		running <= transport '1';
+		-- --------------------
+		WAIT FOR 10 ns; -- Time=20 ns
+		read <= transport '1';
+		-- --------------------
+		WAIT FOR 10 ns; -- Time=30 ns
+		running <= transport '0';
+		-- --------------------
+		WAIT FOR 10 ns; -- Time=40 ns
+		read <= transport '0';
+		-- --------------------
+		WAIT FOR 22 ns; -- Time=62 ns
+		-- --------------------
+
+		write(TX_OUT, string'("Total[]"));
+		writeline(results, TX_OUT);
+		ASSERT (FALSE) REPORT
+			"Success! Simulation for annotation completed"
+			SEVERITY FAILURE;
+	END PROCESS;
+END testbench_arch;
+
+CONFIGURATION core_status_reg_cfg OF testbench IS
+	FOR testbench_arch
+	END FOR;
+END core_status_reg_cfg;

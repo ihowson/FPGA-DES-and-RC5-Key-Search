@@ -1,0 +1,147 @@
+-- C:\ISE\PIL-KEY-SEARCH
+-- VHDL Annotation Test Bench created by
+-- HDL Bencher 5.1i
+-- Wed Jul 30 21:59:52 2003
+
+LIBRARY  IEEE;
+USE IEEE.STD_LOGIC_1164.ALL;
+USE IEEE.STD_LOGIC_ARITH.ALL;
+USE IEEE.STD_LOGIC_UNSIGNED.ALL;
+
+LIBRARY ieee;
+USE IEEE.STD_LOGIC_TEXTIO.ALL;
+USE STD.TEXTIO.ALL;
+
+ENTITY testbench IS
+END testbench;
+
+ARCHITECTURE testbench_arch OF testbench IS
+-- If you get a compiler error on the following line,
+-- from the menu do Options->Configuration select VHDL 87
+FILE RESULTS: TEXT OPEN WRITE_MODE IS "c:\ise\pil-key-search\status_reg_tb.ano";
+	COMPONENT status_reg
+		PORT (
+			din : in  std_logic_vector (63 DOWNTO 0);
+			dout : out  std_logic_vector (63 DOWNTO 0);
+			read : in  std_logic;
+			write : in  std_logic;
+			clk : in  std_logic;
+			addr : in  std_logic_vector (2 DOWNTO 0);
+			corestatus : in  std_logic_vector (1 DOWNTO 0);
+			reset : out  std_logic;
+			latch : in  std_logic;
+			dvalid : in  std_logic;
+			keycount : in  std_logic_vector (7 DOWNTO 0)
+		);
+	END COMPONENT;
+
+	SIGNAL din : std_logic_vector (63 DOWNTO 0);
+	SIGNAL dout : std_logic_vector (63 DOWNTO 0);
+	SIGNAL read : std_logic;
+	SIGNAL write : std_logic;
+	SIGNAL clk : std_logic;
+	SIGNAL addr : std_logic_vector (2 DOWNTO 0);
+	SIGNAL corestatus : std_logic_vector (1 DOWNTO 0);
+	SIGNAL reset : std_logic;
+	SIGNAL latch : std_logic;
+	SIGNAL dvalid : std_logic;
+	SIGNAL keycount : std_logic_vector (7 DOWNTO 0);
+
+BEGIN
+	UUT : status_reg
+	PORT MAP (
+		din => din,
+		dout => dout,
+		read => read,
+		write => write,
+		clk => clk,
+		addr => addr,
+		corestatus => corestatus,
+		reset => reset,
+		latch => latch,
+		dvalid => dvalid,
+		keycount => keycount
+	);
+
+	PROCESS -- clock process for clk,
+		VARIABLE TX_TIME : INTEGER :=0;
+
+		PROCEDURE ANNOTATE_dout(
+			TX_TIME : INTEGER
+		) IS
+			VARIABLE TX_STR : String(1 to 4096);
+			VARIABLE TX_LOC : LINE;
+		BEGIN
+			write(TX_LOC,string'("Annotate["));
+			write(TX_LOC, TX_TIME);
+			write(TX_LOC,string'(",dout,"));
+			write(TX_LOC, dout);
+			write(TX_LOC, string'("]"));
+			TX_STR(TX_LOC.all'range) := TX_LOC.all;
+			writeline(results, TX_LOC);
+			Deallocate(TX_LOC);
+		END;
+
+		PROCEDURE ANNOTATE_reset(
+			TX_TIME : INTEGER
+		) IS
+			VARIABLE TX_STR : String(1 to 4096);
+			VARIABLE TX_LOC : LINE;
+		BEGIN
+			write(TX_LOC,string'("Annotate["));
+			write(TX_LOC, TX_TIME);
+			write(TX_LOC,string'(",reset,"));
+			write(TX_LOC, reset);
+			write(TX_LOC, string'("]"));
+			TX_STR(TX_LOC.all'range) := TX_LOC.all;
+			writeline(results, TX_LOC);
+			Deallocate(TX_LOC);
+		END;
+
+	BEGIN
+		CLOCK_LOOP : LOOP
+		clk <= transport '0';
+		WAIT FOR 2 ns;
+		TX_TIME := TX_TIME + 2;
+		clk <= transport '1';
+		WAIT FOR 2 ns;
+		TX_TIME := TX_TIME + 2;
+		ANNOTATE_dout(TX_TIME);
+		ANNOTATE_reset(TX_TIME);
+		WAIT FOR 3 ns;
+		TX_TIME := TX_TIME + 3;
+		clk <= transport '0';
+		WAIT FOR 3 ns;
+		TX_TIME := TX_TIME + 3;
+		END LOOP CLOCK_LOOP;
+	END PROCESS;
+
+	PROCESS   -- Process for clk
+		VARIABLE TX_OUT : LINE;
+
+		BEGIN
+		-- --------------------
+		din <= transport std_logic_vector'("0000000000000000000000000000000000000000000000000000000000000000"); --0
+		read <= transport '0';
+		write <= transport '0';
+		addr <= transport std_logic_vector'("000"); --0
+		corestatus <= transport std_logic_vector'("00"); --0
+		latch <= transport '0';
+		dvalid <= transport '0';
+		keycount <= transport std_logic_vector'("00000000"); --0
+		-- --------------------
+		WAIT FOR 10 ns; -- Time=10 ns
+		-- --------------------
+
+		write(TX_OUT, string'("Total[]"));
+		writeline(results, TX_OUT);
+		ASSERT (FALSE) REPORT
+			"Success! Simulation for annotation completed"
+			SEVERITY FAILURE;
+	END PROCESS;
+END testbench_arch;
+
+CONFIGURATION status_reg_cfg OF testbench IS
+	FOR testbench_arch
+	END FOR;
+END status_reg_cfg;

@@ -1,0 +1,126 @@
+-- C:\KS2-0928
+-- VHDL Annotation Test Bench created by
+-- HDL Bencher 5.1i
+-- Sun Sep 28 22:48:39 2003
+
+LIBRARY  IEEE;
+USE IEEE.STD_LOGIC_1164.ALL;
+USE IEEE.STD_LOGIC_ARITH.ALL;
+USE IEEE.STD_LOGIC_UNSIGNED.ALL;
+
+LIBRARY ieee;
+USE IEEE.STD_LOGIC_TEXTIO.ALL;
+USE STD.TEXTIO.ALL;
+
+ENTITY testbench IS
+END testbench;
+
+ARCHITECTURE testbench_arch OF testbench IS
+-- If you get a compiler error on the following line,
+-- from the menu do Options->Configuration select VHDL 87
+FILE RESULTS: TEXT OPEN WRITE_MODE IS "c:\ks2-0928\run_control_tbw.ano";
+	COMPONENT run_control
+		PORT (
+			clk : in  std_logic;
+			run : out  std_logic;
+			keywrite : in  std_logic;
+			match : in  std_logic;
+			keyvalid : in  std_logic
+		);
+	END COMPONENT;
+
+	SIGNAL clk : std_logic;
+	SIGNAL run : std_logic;
+	SIGNAL keywrite : std_logic;
+	SIGNAL match : std_logic;
+	SIGNAL keyvalid : std_logic;
+
+BEGIN
+	UUT : run_control
+	PORT MAP (
+		clk => clk,
+		run => run,
+		keywrite => keywrite,
+		match => match,
+		keyvalid => keyvalid
+	);
+
+	PROCESS -- clock process for clk,
+		VARIABLE TX_TIME : INTEGER :=0;
+
+		PROCEDURE ANNOTATE_run(
+			TX_TIME : INTEGER
+		) IS
+			VARIABLE TX_STR : String(1 to 4096);
+			VARIABLE TX_LOC : LINE;
+		BEGIN
+			write(TX_LOC,string'("Annotate["));
+			write(TX_LOC, TX_TIME);
+			write(TX_LOC,string'(",run,"));
+			write(TX_LOC, run);
+			write(TX_LOC, string'("]"));
+			TX_STR(TX_LOC.all'range) := TX_LOC.all;
+			writeline(results, TX_LOC);
+			Deallocate(TX_LOC);
+		END;
+
+	BEGIN
+		CLOCK_LOOP : LOOP
+		clk <= transport '0';
+		WAIT FOR 2 ns;
+		TX_TIME := TX_TIME + 2;
+		clk <= transport '1';
+		WAIT FOR 2 ns;
+		TX_TIME := TX_TIME + 2;
+		ANNOTATE_run(TX_TIME);
+		WAIT FOR 3 ns;
+		TX_TIME := TX_TIME + 3;
+		clk <= transport '0';
+		WAIT FOR 3 ns;
+		TX_TIME := TX_TIME + 3;
+		END LOOP CLOCK_LOOP;
+	END PROCESS;
+
+	PROCESS   -- Process for clk
+		VARIABLE TX_OUT : LINE;
+
+		BEGIN
+		-- --------------------
+		keywrite <= transport '0';
+		match <= transport '0';
+		keyvalid <= transport '0';
+		-- --------------------
+		WAIT FOR 10 ns; -- Time=10 ns
+		keywrite <= transport '1';
+		-- --------------------
+		WAIT FOR 10 ns; -- Time=20 ns
+		keywrite <= transport '0';
+		keyvalid <= transport '1';
+		-- --------------------
+		WAIT FOR 20 ns; -- Time=40 ns
+		match <= transport '1';
+		-- --------------------
+		WAIT FOR 10 ns; -- Time=50 ns
+		match <= transport '0';
+		-- --------------------
+		WAIT FOR 20 ns; -- Time=70 ns
+		keywrite <= transport '1';
+		-- --------------------
+		WAIT FOR 10 ns; -- Time=80 ns
+		keywrite <= transport '0';
+		-- --------------------
+		WAIT FOR 34 ns; -- Time=114 ns
+		-- --------------------
+
+		write(TX_OUT, string'("Total[]"));
+		writeline(results, TX_OUT);
+		ASSERT (FALSE) REPORT
+			"Success! Simulation for annotation completed"
+			SEVERITY FAILURE;
+	END PROCESS;
+END testbench_arch;
+
+CONFIGURATION run_control_cfg OF testbench IS
+	FOR testbench_arch
+	END FOR;
+END run_control_cfg;

@@ -1,0 +1,115 @@
+-- C:\ISE\PIL-KEY-SEARCH
+-- VHDL Annotation Test Bench created by
+-- HDL Bencher 5.1i
+-- Tue Jul 29 18:42:28 2003
+
+LIBRARY  IEEE;
+USE IEEE.STD_LOGIC_1164.ALL;
+USE IEEE.STD_LOGIC_ARITH.ALL;
+USE IEEE.STD_LOGIC_UNSIGNED.ALL;
+
+LIBRARY ieee;
+USE IEEE.STD_LOGIC_TEXTIO.ALL;
+USE STD.TEXTIO.ALL;
+
+ENTITY testbench IS
+END testbench;
+
+ARCHITECTURE testbench_arch OF testbench IS
+-- If you get a compiler error on the following line,
+-- from the menu do Options->Configuration select VHDL 87
+FILE RESULTS: TEXT OPEN WRITE_MODE IS "c:\ise\pil-key-search\core_address_decode_tb.ano";
+	COMPONENT core_address_decode
+		PORT (
+			addr : in  std_logic_vector (7 DOWNTO 0);
+			id : in  std_logic_vector (7 DOWNTO 0);
+			clk : in  std_logic;
+			cs : out  std_logic
+		);
+	END COMPONENT;
+
+	SIGNAL addr : std_logic_vector (7 DOWNTO 0);
+	SIGNAL id : std_logic_vector (7 DOWNTO 0);
+	SIGNAL clk : std_logic;
+	SIGNAL cs : std_logic;
+
+BEGIN
+	UUT : core_address_decode
+	PORT MAP (
+		addr => addr,
+		id => id,
+		clk => clk,
+		cs => cs
+	);
+
+	PROCESS -- clock process for clk,
+		VARIABLE TX_TIME : INTEGER :=0;
+
+		PROCEDURE ANNOTATE_cs(
+			TX_TIME : INTEGER
+		) IS
+			VARIABLE TX_STR : String(1 to 4096);
+			VARIABLE TX_LOC : LINE;
+		BEGIN
+			write(TX_LOC,string'("Annotate["));
+			write(TX_LOC, TX_TIME);
+			write(TX_LOC,string'(",cs,"));
+			write(TX_LOC, cs);
+			write(TX_LOC, string'("]"));
+			TX_STR(TX_LOC.all'range) := TX_LOC.all;
+			writeline(results, TX_LOC);
+			Deallocate(TX_LOC);
+		END;
+
+	BEGIN
+		CLOCK_LOOP : LOOP
+		clk <= transport '0';
+		WAIT FOR 2 ns;
+		TX_TIME := TX_TIME + 2;
+		clk <= transport '1';
+		WAIT FOR 2 ns;
+		TX_TIME := TX_TIME + 2;
+		ANNOTATE_cs(TX_TIME);
+		WAIT FOR 3 ns;
+		TX_TIME := TX_TIME + 3;
+		clk <= transport '0';
+		WAIT FOR 3 ns;
+		TX_TIME := TX_TIME + 3;
+		END LOOP CLOCK_LOOP;
+	END PROCESS;
+
+	PROCESS   -- Process for clk
+		VARIABLE TX_OUT : LINE;
+
+		BEGIN
+		-- --------------------
+		addr <= transport std_logic_vector'("00000000"); --0
+		id <= transport std_logic_vector'("00000011"); --3
+		-- --------------------
+		WAIT FOR 10 ns; -- Time=10 ns
+		addr <= transport std_logic_vector'("00000001"); --1
+		-- --------------------
+		WAIT FOR 10 ns; -- Time=20 ns
+		addr <= transport std_logic_vector'("00000010"); --2
+		-- --------------------
+		WAIT FOR 10 ns; -- Time=30 ns
+		addr <= transport std_logic_vector'("00000011"); --3
+		-- --------------------
+		WAIT FOR 10 ns; -- Time=40 ns
+		addr <= transport std_logic_vector'("00000100"); --4
+		-- --------------------
+		WAIT FOR 22 ns; -- Time=62 ns
+		-- --------------------
+
+		write(TX_OUT, string'("Total[]"));
+		writeline(results, TX_OUT);
+		ASSERT (FALSE) REPORT
+			"Success! Simulation for annotation completed"
+			SEVERITY FAILURE;
+	END PROCESS;
+END testbench_arch;
+
+CONFIGURATION core_address_decode_cfg OF testbench IS
+	FOR testbench_arch
+	END FOR;
+END core_address_decode_cfg;

@@ -1,0 +1,2 @@
+NET "pads_dimm_ck" TNM_NET = "pads_dimm_ck";
+TIMESPEC "TS_pads_dimm_ck" = PERIOD "pads_dimm_ck" 100 MHz HIGH 50 %;

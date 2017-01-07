@@ -1,0 +1,5 @@
+MODULE decryptdes
+   SUBMODULE fp
+   SUBMODULE ip
+   SUBMODULE keysched
+   SUBMODULE roundfunc

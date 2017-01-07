@@ -1,0 +1,54 @@
+# Xilinx CORE Generator 5.2.03i
+# Username = Ian
+# COREGenPath = C:\xilinx\coregen
+# ProjectPath = C:\ise\pil-key-search
+# ExpandedProjectPath = C:\ise\pil-key-search
+# OverwriteFiles = true
+# Core name: count32
+# Number of Primitives in design: 160
+# Number of CLBs used in design: 17
+# Number of Slices used in design: 17
+# Number of LUT sites used in design: 33
+# Number of LUTs used in design: 33
+# Number of REG used in design: 32
+# Number of SRL16s used in design: 0
+# Number of Distributed RAM primitives used in design: 0
+# Number of Block Memories cannot be determined when there is no RPMed logic
+# Number of Dedicated Multipliers cannot be determined when there is no RPMed logic
+# Number of HU_SETs used: 1
+# Huset "default" = (0, 0) to (1, 17) in CLBs
+# 
+SET BusFormat = BusFormatAngleBracket
+SET SimulationOutputProducts = Verilog VHDL
+SET XilinxFamily = Virtex
+SET OutputOption = DesignFlow
+SET DesignFlow = Vhdl
+SET FlowVendor = Foundation_iSE
+SET FormalVerification = None
+SELECT Binary_Counter Virtex Xilinx,_Inc. 6.0
+CSET ce_override_for_load = false
+CSET async_init_value = FFFFFFFF
+CSET create_rpm = true
+CSET clock_enable = false
+CSET load = true
+CSET ce_overrides = sync_controls_override_ce
+CSET load_sense = active_high
+CSET sync_init_value = 0
+CSET operation = up
+CSET threshold_1 = false
+CSET threshold_0 = false
+CSET count_style = count_by_constant
+CSET restrict_count = false
+CSET count_by_value = 1
+CSET component_name = count32
+CSET threshold_early = true
+CSET asynchronous_settings = none
+CSET threshold_1_value = MAX
+CSET count_to_value = MAX
+CSET threshold_0_value = MAX
+CSET threshold_options = non_registered
+CSET set_clear_priority = clear_overrides_set
+CSET output_width = 32
+CSET synchronous_settings = set
+GENERATE
+

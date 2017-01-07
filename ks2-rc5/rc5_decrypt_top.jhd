@@ -1,0 +1,7 @@
+MODULE rc5_decrypt_top
+	SUBMODULE rc5_ram
+		INSTANCE ram32x8x2p
+	SUBMODULE rc5_decrypt
+		INSTANCE decrypt_init
+	SUBMODULE rc5_keyschedule
+		INSTANCE keysched

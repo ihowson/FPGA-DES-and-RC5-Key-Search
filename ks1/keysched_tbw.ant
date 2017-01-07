@@ -1,0 +1,417 @@
+-- C:\ISE\PIL-KEY-SEARCH
+-- VHDL Annotation Test Bench created by
+-- HDL Bencher 5.1i
+-- Wed Aug 20 12:32:21 2003
+
+LIBRARY  ieee;
+USE ieee.std_logic_1164.all;
+
+LIBRARY ieee;
+USE IEEE.STD_LOGIC_TEXTIO.ALL;
+USE STD.TEXTIO.ALL;
+
+ENTITY testbench IS
+END testbench;
+
+ARCHITECTURE testbench_arch OF testbench IS
+-- If you get a compiler error on the following line,
+-- from the menu do Options->Configuration select VHDL 87
+FILE RESULTS: TEXT OPEN WRITE_MODE IS "c:\ise\pil-key-search\keysched_tbw.ano";
+	COMPONENT keysched
+		PORT (
+			key : in  std_logic_vector (1 TO 64);
+			k1x : out  std_logic_vector (1 TO 48);
+			k2x : out  std_logic_vector (1 TO 48);
+			k3x : out  std_logic_vector (1 TO 48);
+			k4x : out  std_logic_vector (1 TO 48);
+			k5x : out  std_logic_vector (1 TO 48);
+			k6x : out  std_logic_vector (1 TO 48);
+			k7x : out  std_logic_vector (1 TO 48);
+			k8x : out  std_logic_vector (1 TO 48);
+			k9x : out  std_logic_vector (1 TO 48);
+			k10x : out  std_logic_vector (1 TO 48);
+			k11x : out  std_logic_vector (1 TO 48);
+			k12x : out  std_logic_vector (1 TO 48);
+			k13x : out  std_logic_vector (1 TO 48);
+			k14x : out  std_logic_vector (1 TO 48);
+			k15x : out  std_logic_vector (1 TO 48);
+			k16x : out  std_logic_vector (1 TO 48)
+		);
+	END COMPONENT;
+
+	SIGNAL key : std_logic_vector (1 TO 64);
+	SIGNAL k1x : std_logic_vector (1 TO 48);
+	SIGNAL k2x : std_logic_vector (1 TO 48);
+	SIGNAL k3x : std_logic_vector (1 TO 48);
+	SIGNAL k4x : std_logic_vector (1 TO 48);
+	SIGNAL k5x : std_logic_vector (1 TO 48);
+	SIGNAL k6x : std_logic_vector (1 TO 48);
+	SIGNAL k7x : std_logic_vector (1 TO 48);
+	SIGNAL k8x : std_logic_vector (1 TO 48);
+	SIGNAL k9x : std_logic_vector (1 TO 48);
+	SIGNAL k10x : std_logic_vector (1 TO 48);
+	SIGNAL k11x : std_logic_vector (1 TO 48);
+	SIGNAL k12x : std_logic_vector (1 TO 48);
+	SIGNAL k13x : std_logic_vector (1 TO 48);
+	SIGNAL k14x : std_logic_vector (1 TO 48);
+	SIGNAL k15x : std_logic_vector (1 TO 48);
+	SIGNAL k16x : std_logic_vector (1 TO 48);
+
+BEGIN
+	UUT : keysched
+	PORT MAP (
+		key => key,
+		k1x => k1x,
+		k2x => k2x,
+		k3x => k3x,
+		k4x => k4x,
+		k5x => k5x,
+		k6x => k6x,
+		k7x => k7x,
+		k8x => k8x,
+		k9x => k9x,
+		k10x => k10x,
+		k11x => k11x,
+		k12x => k12x,
+		k13x => k13x,
+		k14x => k14x,
+		k15x => k15x,
+		k16x => k16x
+	);
+
+	PROCESS -- Annotate outputs process
+		VARIABLE TX_TIME : INTEGER :=0;
+
+		PROCEDURE ANNOTATE_k1x(
+			TX_TIME : INTEGER
+		) IS
+			VARIABLE TX_STR : String(1 to 4096);
+			VARIABLE TX_LOC : LINE;
+		BEGIN
+			write(TX_LOC,string'("Annotate["));
+			write(TX_LOC, TX_TIME);
+			write(TX_LOC,string'(",k1x,"));
+			write(TX_LOC, k1x);
+			write(TX_LOC, string'("]"));
+			TX_STR(TX_LOC.all'range) := TX_LOC.all;
+			writeline(results, TX_LOC);
+			Deallocate(TX_LOC);
+		END;
+
+		PROCEDURE ANNOTATE_k2x(
+			TX_TIME : INTEGER
+		) IS
+			VARIABLE TX_STR : String(1 to 4096);
+			VARIABLE TX_LOC : LINE;
+		BEGIN
+			write(TX_LOC,string'("Annotate["));
+			write(TX_LOC, TX_TIME);
+			write(TX_LOC,string'(",k2x,"));
+			write(TX_LOC, k2x);
+			write(TX_LOC, string'("]"));
+			TX_STR(TX_LOC.all'range) := TX_LOC.all;
+			writeline(results, TX_LOC);
+			Deallocate(TX_LOC);
+		END;
+
+		PROCEDURE ANNOTATE_k3x(
+			TX_TIME : INTEGER
+		) IS
+			VARIABLE TX_STR : String(1 to 4096);
+			VARIABLE TX_LOC : LINE;
+		BEGIN
+			write(TX_LOC,string'("Annotate["));
+			write(TX_LOC, TX_TIME);
+			write(TX_LOC,string'(",k3x,"));
+			write(TX_LOC, k3x);
+			write(TX_LOC, string'("]"));
+			TX_STR(TX_LOC.all'range) := TX_LOC.all;
+			writeline(results, TX_LOC);
+			Deallocate(TX_LOC);
+		END;
+
+		PROCEDURE ANNOTATE_k4x(
+			TX_TIME : INTEGER
+		) IS
+			VARIABLE TX_STR : String(1 to 4096);
+			VARIABLE TX_LOC : LINE;
+		BEGIN
+			write(TX_LOC,string'("Annotate["));
+			write(TX_LOC, TX_TIME);
+			write(TX_LOC,string'(",k4x,"));
+			write(TX_LOC, k4x);
+			write(TX_LOC, string'("]"));
+			TX_STR(TX_LOC.all'range) := TX_LOC.all;
+			writeline(results, TX_LOC);
+			Deallocate(TX_LOC);
+		END;
+
+		PROCEDURE ANNOTATE_k5x(
+			TX_TIME : INTEGER
+		) IS
+			VARIABLE TX_STR : String(1 to 4096);
+			VARIABLE TX_LOC : LINE;
+		BEGIN
+			write(TX_LOC,string'("Annotate["));
+			write(TX_LOC, TX_TIME);
+			write(TX_LOC,string'(",k5x,"));
+			write(TX_LOC, k5x);
+			write(TX_LOC, string'("]"));
+			TX_STR(TX_LOC.all'range) := TX_LOC.all;
+			writeline(results, TX_LOC);
+			Deallocate(TX_LOC);
+		END;
+
+		PROCEDURE ANNOTATE_k6x(
+			TX_TIME : INTEGER
+		) IS
+			VARIABLE TX_STR : String(1 to 4096);
+			VARIABLE TX_LOC : LINE;
+		BEGIN
+			write(TX_LOC,string'("Annotate["));
+			write(TX_LOC, TX_TIME);
+			write(TX_LOC,string'(",k6x,"));
+			write(TX_LOC, k6x);
+			write(TX_LOC, string'("]"));
+			TX_STR(TX_LOC.all'range) := TX_LOC.all;
+			writeline(results, TX_LOC);
+			Deallocate(TX_LOC);
+		END;
+
+		PROCEDURE ANNOTATE_k7x(
+			TX_TIME : INTEGER
+		) IS
+			VARIABLE TX_STR : String(1 to 4096);
+			VARIABLE TX_LOC : LINE;
+		BEGIN
+			write(TX_LOC,string'("Annotate["));
+			write(TX_LOC, TX_TIME);
+			write(TX_LOC,string'(",k7x,"));
+			write(TX_LOC, k7x);
+			write(TX_LOC, string'("]"));
+			TX_STR(TX_LOC.all'range) := TX_LOC.all;
+			writeline(results, TX_LOC);
+			Deallocate(TX_LOC);
+		END;
+
+		PROCEDURE ANNOTATE_k8x(
+			TX_TIME : INTEGER
+		) IS
+			VARIABLE TX_STR : String(1 to 4096);
+			VARIABLE TX_LOC : LINE;
+		BEGIN
+			write(TX_LOC,string'("Annotate["));
+			write(TX_LOC, TX_TIME);
+			write(TX_LOC,string'(",k8x,"));
+			write(TX_LOC, k8x);
+			write(TX_LOC, string'("]"));
+			TX_STR(TX_LOC.all'range) := TX_LOC.all;
+			writeline(results, TX_LOC);
+			Deallocate(TX_LOC);
+		END;
+
+		PROCEDURE ANNOTATE_k9x(
+			TX_TIME : INTEGER
+		) IS
+			VARIABLE TX_STR : String(1 to 4096);
+			VARIABLE TX_LOC : LINE;
+		BEGIN
+			write(TX_LOC,string'("Annotate["));
+			write(TX_LOC, TX_TIME);
+			write(TX_LOC,string'(",k9x,"));
+			write(TX_LOC, k9x);
+			write(TX_LOC, string'("]"));
+			TX_STR(TX_LOC.all'range) := TX_LOC.all;
+			writeline(results, TX_LOC);
+			Deallocate(TX_LOC);
+		END;
+
+		PROCEDURE ANNOTATE_k10x(
+			TX_TIME : INTEGER
+		) IS
+			VARIABLE TX_STR : String(1 to 4096);
+			VARIABLE TX_LOC : LINE;
+		BEGIN
+			write(TX_LOC,string'("Annotate["));
+			write(TX_LOC, TX_TIME);
+			write(TX_LOC,string'(",k10x,"));
+			write(TX_LOC, k10x);
+			write(TX_LOC, string'("]"));
+			TX_STR(TX_LOC.all'range) := TX_LOC.all;
+			writeline(results, TX_LOC);
+			Deallocate(TX_LOC);
+		END;
+
+		PROCEDURE ANNOTATE_k11x(
+			TX_TIME : INTEGER
+		) IS
+			VARIABLE TX_STR : String(1 to 4096);
+			VARIABLE TX_LOC : LINE;
+		BEGIN
+			write(TX_LOC,string'("Annotate["));
+			write(TX_LOC, TX_TIME);
+			write(TX_LOC,string'(",k11x,"));
+			write(TX_LOC, k11x);
+			write(TX_LOC, string'("]"));
+			TX_STR(TX_LOC.all'range) := TX_LOC.all;
+			writeline(results, TX_LOC);
+			Deallocate(TX_LOC);
+		END;
+
+		PROCEDURE ANNOTATE_k12x(
+			TX_TIME : INTEGER
+		) IS
+			VARIABLE TX_STR : String(1 to 4096);
+			VARIABLE TX_LOC : LINE;
+		BEGIN
+			write(TX_LOC,string'("Annotate["));
+			write(TX_LOC, TX_TIME);
+			write(TX_LOC,string'(",k12x,"));
+			write(TX_LOC, k12x);
+			write(TX_LOC, string'("]"));
+			TX_STR(TX_LOC.all'range) := TX_LOC.all;
+			writeline(results, TX_LOC);
+			Deallocate(TX_LOC);
+		END;
+
+		PROCEDURE ANNOTATE_k13x(
+			TX_TIME : INTEGER
+		) IS
+			VARIABLE TX_STR : String(1 to 4096);
+			VARIABLE TX_LOC : LINE;
+		BEGIN
+			write(TX_LOC,string'("Annotate["));
+			write(TX_LOC, TX_TIME);
+			write(TX_LOC,string'(",k13x,"));
+			write(TX_LOC, k13x);
+			write(TX_LOC, string'("]"));
+			TX_STR(TX_LOC.all'range) := TX_LOC.all;
+			writeline(results, TX_LOC);
+			Deallocate(TX_LOC);
+		END;
+
+		PROCEDURE ANNOTATE_k14x(
+			TX_TIME : INTEGER
+		) IS
+			VARIABLE TX_STR : String(1 to 4096);
+			VARIABLE TX_LOC : LINE;
+		BEGIN
+			write(TX_LOC,string'("Annotate["));
+			write(TX_LOC, TX_TIME);
+			write(TX_LOC,string'(",k14x,"));
+			write(TX_LOC, k14x);
+			write(TX_LOC, string'("]"));
+			TX_STR(TX_LOC.all'range) := TX_LOC.all;
+			writeline(results, TX_LOC);
+			Deallocate(TX_LOC);
+		END;
+
+		PROCEDURE ANNOTATE_k15x(
+			TX_TIME : INTEGER
+		) IS
+			VARIABLE TX_STR : String(1 to 4096);
+			VARIABLE TX_LOC : LINE;
+		BEGIN
+			write(TX_LOC,string'("Annotate["));
+			write(TX_LOC, TX_TIME);
+			write(TX_LOC,string'(",k15x,"));
+			write(TX_LOC, k15x);
+			write(TX_LOC, string'("]"));
+			TX_STR(TX_LOC.all'range) := TX_LOC.all;
+			writeline(results, TX_LOC);
+			Deallocate(TX_LOC);
+		END;
+
+		PROCEDURE ANNOTATE_k16x(
+			TX_TIME : INTEGER
+		) IS
+			VARIABLE TX_STR : String(1 to 4096);
+			VARIABLE TX_LOC : LINE;
+		BEGIN
+			write(TX_LOC,string'("Annotate["));
+			write(TX_LOC, TX_TIME);
+			write(TX_LOC,string'(",k16x,"));
+			write(TX_LOC, k16x);
+			write(TX_LOC, string'("]"));
+			TX_STR(TX_LOC.all'range) := TX_LOC.all;
+			writeline(results, TX_LOC);
+			Deallocate(TX_LOC);
+		END;
+
+	BEGIN
+		CHECK_LOOP : LOOP
+		WAIT FOR 50 ns;
+		TX_TIME := TX_TIME + 50;
+		ANNOTATE_k1x(TX_TIME);
+		ANNOTATE_k2x(TX_TIME);
+		ANNOTATE_k3x(TX_TIME);
+		ANNOTATE_k4x(TX_TIME);
+		ANNOTATE_k5x(TX_TIME);
+		ANNOTATE_k6x(TX_TIME);
+		ANNOTATE_k7x(TX_TIME);
+		ANNOTATE_k8x(TX_TIME);
+		ANNOTATE_k9x(TX_TIME);
+		ANNOTATE_k10x(TX_TIME);
+		ANNOTATE_k11x(TX_TIME);
+		ANNOTATE_k12x(TX_TIME);
+		ANNOTATE_k13x(TX_TIME);
+		ANNOTATE_k14x(TX_TIME);
+		ANNOTATE_k15x(TX_TIME);
+		ANNOTATE_k16x(TX_TIME);
+		WAIT FOR 50 ns;
+		TX_TIME := TX_TIME + 50;
+		END LOOP CHECK_LOOP;
+	END PROCESS;
+
+	PROCESS
+		VARIABLE TX_OUT : LINE;
+
+		BEGIN
+		-- --------------------
+		key <= transport std_logic_vector'("0000000000000000000000000000000000000000000000000000000000000000"); --0
+		-- --------------------
+		WAIT FOR 500 ns; -- Time=500 ns
+		key <= transport std_logic_vector'("0000000000000000000000000000000000000000000001010101010101010101"); --55555
+		-- --------------------
+		WAIT FOR 100 ns; -- Time=600 ns
+		key <= transport std_logic_vector'("0000000000000000000000000000000000000000000000000000000000000000"); --0
+		-- --------------------
+		WAIT FOR 100 ns; -- Time=700 ns
+		key <= transport std_logic_vector'("0000000000000000000000000000000000000000000000000000000000000000"); --0
+		-- --------------------
+		WAIT FOR 100 ns; -- Time=800 ns
+		key <= transport std_logic_vector'("0000000000000000000000000000000000000000000000000000000000000000"); --0
+		-- --------------------
+		WAIT FOR 100 ns; -- Time=900 ns
+		key <= transport std_logic_vector'("0000000000000000000000000000000000000000000000000000000000000000"); --0
+		-- --------------------
+		WAIT FOR 100 ns; -- Time=1000 ns
+		key <= transport std_logic_vector'("0000000000000000000000000000000000000000000000000000000000000000"); --0
+		-- --------------------
+		WAIT FOR 100 ns; -- Time=1100 ns
+		key <= transport std_logic_vector'("0000000000000000000000000000000000000000000000000000000000000000"); --0
+		-- --------------------
+		WAIT FOR 100 ns; -- Time=1200 ns
+		key <= transport std_logic_vector'("0000000000000000000000000000000000000000000000000000000000000000"); --0
+		-- --------------------
+		WAIT FOR 100 ns; -- Time=1300 ns
+		key <= transport std_logic_vector'("0000000000000000000000000000000000000000000000000000000000000000"); --0
+		-- --------------------
+		WAIT FOR 100 ns; -- Time=1400 ns
+		key <= transport std_logic_vector'("0000000000000000000000000000000000000000000000000000000000000000"); --0
+		-- --------------------
+		WAIT FOR 150 ns; -- Time=1550 ns
+		-- --------------------
+
+		write(TX_OUT, string'("Total[]"));
+		writeline(results, TX_OUT);
+		ASSERT (FALSE) REPORT
+			"Success! Simulation for annotation completed"
+			SEVERITY FAILURE;
+	END PROCESS;
+END testbench_arch;
+
+CONFIGURATION keysched_cfg OF testbench IS
+	FOR testbench_arch
+	END FOR;
+END keysched_cfg;

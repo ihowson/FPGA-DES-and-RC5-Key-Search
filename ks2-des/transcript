@@ -1,0 +1,9 @@
+# Reading C:/Modeltech_xe_starter/tcl/vsim/pref.tcl 
+# do decryptdes_tb.fdo 
+# ** Warning: (vlib-34) Library already exists at "work".
+# Model Technology ModelSim XE II vcom 5.6e Compiler 2002.10 Oct 22 2002
+# -- Loading package standard
+# -- Loading package std_logic_1164
+# -- Loading package vital_timing
+# -- Loading package vcomponents
+** Warning: A ModelSim starter license was detected and will be used, even though you have installed ModelSim XE. You should obtain an XE license in order to access ModelSim XE's full capabilities.

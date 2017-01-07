@@ -1,0 +1,27 @@
+# Xilinx CORE Generator 5.2.03i
+SELECT Binary_Counter Virtex Xilinx,_Inc. 6.0
+CSET ce_override_for_load = false
+CSET async_init_value = FFFFFFFFFFFFFFFF
+CSET create_rpm = true
+CSET clock_enable = true
+CSET load = true
+CSET ce_overrides = sync_controls_override_ce
+CSET load_sense = active_high
+CSET sync_init_value = 0
+CSET operation = up
+CSET threshold_1 = false
+CSET threshold_0 = false
+CSET count_style = count_by_constant
+CSET restrict_count = false
+CSET count_by_value = 1
+CSET component_name = count64
+CSET threshold_early = false
+CSET asynchronous_settings = none
+CSET threshold_1_value = MAX
+CSET count_to_value = MAX
+CSET threshold_0_value = MAX
+CSET threshold_options = non_registered
+CSET set_clear_priority = clear_overrides_set
+CSET output_width = 64
+CSET synchronous_settings = none
+GENERATE

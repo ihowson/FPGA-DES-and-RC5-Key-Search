@@ -1,0 +1,161 @@
+-- C:\ISE\PIL-KEY-SEARCH
+-- VHDL Annotation Test Bench created by
+-- HDL Bencher 5.1i
+-- Tue Jul 29 20:15:14 2003
+
+LIBRARY  IEEE;
+USE IEEE.STD_LOGIC_1164.ALL;
+USE IEEE.STD_LOGIC_ARITH.ALL;
+USE IEEE.STD_LOGIC_UNSIGNED.ALL;
+
+LIBRARY ieee;
+USE IEEE.STD_LOGIC_TEXTIO.ALL;
+USE STD.TEXTIO.ALL;
+
+ENTITY testbench IS
+END testbench;
+
+ARCHITECTURE testbench_arch OF testbench IS
+-- If you get a compiler error on the following line,
+-- from the menu do Options->Configuration select VHDL 87
+FILE RESULTS: TEXT OPEN WRITE_MODE IS "c:\ise\pil-key-search\core-key_latch_tb.ano";
+	COMPONENT core_key_latch
+		PORT (
+			key : in  std_logic_vector (63 DOWNTO 0);
+			write : in  std_logic;
+			clk : in  std_logic;
+			read : in  std_logic;
+			restart : in  std_logic;
+			run : out  std_logic;
+			data : inout  std_logic_vector (63 DOWNTO 0)
+		);
+	END COMPONENT;
+
+	SIGNAL key : std_logic_vector (63 DOWNTO 0);
+	SIGNAL write : std_logic;
+	SIGNAL clk : std_logic;
+	SIGNAL read : std_logic;
+	SIGNAL restart : std_logic;
+	SIGNAL run : std_logic;
+	SIGNAL data : std_logic_vector (63 DOWNTO 0);
+
+BEGIN
+	UUT : core_key_latch
+	PORT MAP (
+		key => key,
+		write => write,
+		clk => clk,
+		read => read,
+		restart => restart,
+		run => run,
+		data => data
+	);
+
+	PROCESS -- clock process for clk,
+		VARIABLE TX_TIME : INTEGER :=0;
+
+		PROCEDURE ANNOTATE_run(
+			TX_TIME : INTEGER
+		) IS
+			VARIABLE TX_STR : String(1 to 4096);
+			VARIABLE TX_LOC : LINE;
+		BEGIN
+			write(TX_LOC,string'("Annotate["));
+			write(TX_LOC, TX_TIME);
+			write(TX_LOC,string'(",run,"));
+			write(TX_LOC, run);
+			write(TX_LOC, string'("]"));
+			TX_STR(TX_LOC.all'range) := TX_LOC.all;
+			writeline(results, TX_LOC);
+			Deallocate(TX_LOC);
+		END;
+
+		PROCEDURE ANNOTATE_data(
+			TX_TIME : INTEGER
+		) IS
+			VARIABLE TX_STR : String(1 to 4096);
+			VARIABLE TX_LOC : LINE;
+		BEGIN
+			write(TX_LOC,string'("Annotate["));
+			write(TX_LOC, TX_TIME);
+			write(TX_LOC,string'(",data,"));
+			write(TX_LOC, data);
+			write(TX_LOC, string'("]"));
+			TX_STR(TX_LOC.all'range) := TX_LOC.all;
+			writeline(results, TX_LOC);
+			Deallocate(TX_LOC);
+		END;
+
+	BEGIN
+		CLOCK_LOOP : LOOP
+		clk <= transport '0';
+		WAIT FOR 2 ns;
+		TX_TIME := TX_TIME + 2;
+		clk <= transport '1';
+		WAIT FOR 2 ns;
+		TX_TIME := TX_TIME + 2;
+		ANNOTATE_run(TX_TIME);
+		ANNOTATE_data(TX_TIME);
+		WAIT FOR 3 ns;
+		TX_TIME := TX_TIME + 3;
+		clk <= transport '0';
+		WAIT FOR 3 ns;
+		TX_TIME := TX_TIME + 3;
+		END LOOP CLOCK_LOOP;
+	END PROCESS;
+
+	PROCESS   -- Process for clk
+		VARIABLE TX_OUT : LINE;
+
+		BEGIN
+		-- --------------------
+		key <= transport std_logic_vector'("0000000000000000000000000000000000000000000000000000000000000000"); --0
+		write <= transport '0';
+		read <= transport '0';
+		restart <= transport '0';
+		-- --------------------
+		WAIT FOR 10 ns; -- Time=10 ns
+		key <= transport std_logic_vector'("0000000000000000000000000000000000000000000000000000000000000000"); --0
+		-- --------------------
+		WAIT FOR 10 ns; -- Time=20 ns
+		key <= transport std_logic_vector'("0000000000000000000000000000000000000000000000000000000000000001"); --1
+		restart <= transport '1';
+		-- --------------------
+		WAIT FOR 10 ns; -- Time=30 ns
+		key <= transport std_logic_vector'("0000000000000000000000000000000000000000000000000000000000000010"); --2
+		restart <= transport '0';
+		-- --------------------
+		WAIT FOR 10 ns; -- Time=40 ns
+		key <= transport std_logic_vector'("0000000000000000000000000000000000000000000000000000000000000011"); --3
+		write <= transport '1';
+		-- --------------------
+		WAIT FOR 10 ns; -- Time=50 ns
+		key <= transport std_logic_vector'("0000000000000000000000000000000000000000000000000000000000000100"); --4
+		write <= transport '0';
+		-- --------------------
+		WAIT FOR 10 ns; -- Time=60 ns
+		key <= transport std_logic_vector'("0000000000000000000000000000000000000000000000000000000000000101"); --5
+		read <= transport '1';
+		-- --------------------
+		WAIT FOR 10 ns; -- Time=70 ns
+		key <= transport std_logic_vector'("0000000000000000000000000000000000000000000000000000000000000110"); --6
+		read <= transport '0';
+		-- --------------------
+		WAIT FOR 10 ns; -- Time=80 ns
+		key <= transport std_logic_vector'("0000000000000000000000000000000000000000000000000000000000000111"); --7
+		-- --------------------
+		WAIT FOR 22 ns; -- Time=102 ns
+		-- --------------------
+
+		write(TX_OUT, string'("Total[]"));
+		writeline(results, TX_OUT);
+		ASSERT (FALSE) REPORT
+			"Success! Simulation for annotation completed"
+			SEVERITY FAILURE;
+	END PROCESS;
+END testbench_arch;
+
+CONFIGURATION core_key_latch_cfg OF testbench IS
+	FOR testbench_arch
+	END FOR;
+END core_key_latch_cfg;

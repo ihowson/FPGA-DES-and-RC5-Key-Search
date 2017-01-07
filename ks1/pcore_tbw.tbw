@@ -1,0 +1,76 @@
+info x 67 510 0 0 0 0 0 0 0 0 0 0 0 0 0 0 VHDLvhdl_genericverilog_generic
+col x 257 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 
+radix x 10 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 
+entity name 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 pcore
+term mark 28 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 
+vlib save 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 LIBRARY  ieee;
+USE ieee.std_logic_1164.ALL;
+USE ieee.numeric_std.ALL;
+
+LIBRARY  UNISIM;
+USE UNISIM.Vcomponents.ALL;
+
+var add 2 31 0 226 13 16 257 10 5 5 2 2 0 0 0 0 clkINSTD_LOGICRISING_EDGEclk
+var add 1 13 0 228 12 17 257 10 5 5 2 2 0 0 0 0 addrINSTD_LOGIC_VECTORRISING_EDGEclk
+var add 3 31 0 226 14 19 257 10 5 5 2 2 0 0 0 0 clkdivINSTD_LOGICRISING_EDGEclk
+var add 4 63 0 228 15 16 257 10 5 5 2 2 0 0 0 0 dinINSTD_LOGIC_VECTORRISING_EDGEclk
+var add 5 63 0 228 16 18 257 10 5 5 2 2 0 0 0 0 dmaskINSTD_LOGIC_VECTORRISING_EDGEclk
+var add 6 25 0 228 17 18 257 10 5 5 2 2 0 0 0 0 extinINSTD_LOGIC_VECTORRISING_EDGEclk
+var add 7 31 0 226 18 17 257 10 5 5 2 2 0 0 0 0 readINSTD_LOGICRISING_EDGEclk
+var add 8 31 0 226 19 18 257 10 5 5 2 2 0 0 0 0 resetINSTD_LOGICRISING_EDGEclk
+var add 9 31 0 226 20 18 257 10 5 5 2 2 0 0 0 0 writeINSTD_LOGICRISING_EDGEclk
+var add 10 63 0 228 21 17 257 10 5 5 2 2 0 0 0 0 doutOUTSTD_LOGIC_VECTORRISING_EDGEclk
+var add 11 25 0 228 22 20 257 10 5 5 2 2 0 0 0 0 extctrlOUTSTD_LOGIC_VECTORRISING_EDGEclk
+var add 12 25 0 228 23 19 257 10 5 5 2 2 0 0 0 0 extoutOUTSTD_LOGIC_VECTORRISING_EDGEclk
+vdone xxx 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 
+npos xxx 96 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 
+cell fill 2 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 00000000000000
+cell fill 3 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+cell fill 4 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0000000000000000000000000000000000000000000000000000000000000000
+cell fill 5 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0000000000000000000000000000000000000000000000000000000000000000
+cell fill 6 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 00000000000000000000000000
+cell fill 7 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+cell fill 7 4 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1
+cell fill 7 8 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+cell fill 8 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+cell fill 9 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+time info 50 50 2 2 5 5 1 1 0 0 0 0 0 0 0 0 nsclk
+font save -14 0 400 49 0 0 0 0 0 0 0 0 0 0 0 0 Times New Roman
+src mod 0 2077419408 29581636 11 0 0 0 0 0 0 0 0 0 0 0 0 pcore.vhf
+utd false 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 
+cellenab on 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 
+grid on 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 
+com add 1 0 2 16 14 0 -67 0 0 0 0 0 0 0 0 0 Waveform created by
+HDL Bencher 5.1i
+Source = pcore.vhf
+Wed Aug 13 14:12:24 2003
+type info 31 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 STD_LOGIC_VECTORVECTORDOWNTO
+type info 31 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 STD_LOGIC_VECTORVECTORDOWNTO
+type info 31 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 STD_LOGIC_VECTORVECTORDOWNTO
+type info 31 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 STD_LOGIC_VECTORVECTORDOWNTO
+type info 31 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 STD_LOGIC_VECTORVECTORDOWNTO
+type info 31 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 STD_LOGIC_VECTORVECTORDOWNTO
+type info 31 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 STD_LOGIC_VECTORVECTORDOWNTO
+type info 31 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 STD_LOGIC_VECTORVECTORDOWNTO
+type info 31 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 STD_LOGIC_VECTORVECTORDOWNTO
+type info 31 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 STD_LOGIC_VECTORVECTORDOWNTO
+type info 31 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 STD_LOGIC_VECTORVECTORDOWNTO
+type info 31 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 STD_LOGIC_VECTORVECTORDOWNTO
+type info 31 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 STD_LOGIC_VECTORVECTORDOWNTO
+type info 31 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 STD_LOGIC_VECTORVECTORDOWNTO
+type info 31 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 STD_LOGIC_VECTORVECTORDOWNTO
+type info 31 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 STD_LOGIC_VECTORVECTORDOWNTO
+type info 31 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 STD_LOGIC_VECTORVECTORDOWNTO
+type info 31 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 STD_LOGIC_VECTORVECTORDOWNTO
+type info 31 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 STD_LOGIC_VECTORVECTORDOWNTO
+type info 31 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 STD_LOGIC_VECTORVECTORDOWNTO
+type info 31 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 STD_LOGIC_VECTORVECTORDOWNTO
+type info 31 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 STD_LOGIC_VECTORVECTORDOWNTO
+type info 31 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 STD_LOGIC_VECTORVECTORDOWNTO
+type info 31 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 STD_LOGIC_VECTORVECTORDOWNTO
+type info 31 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 STD_LOGIC_VECTORVECTORDOWNTO
+type info 31 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 STD_LOGIC_VECTORVECTORDOWNTO
+type info 31 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 STD_LOGIC_VECTORVECTORDOWNTO
+opt vhdl87 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 
+NumClocks x 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 
+clock_1 name 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 clk

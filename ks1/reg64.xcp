@@ -1,0 +1,13 @@
+# Xilinx CORE Generator 5.2.03i
+SELECT LD-based_Parallel_Latch Virtex Xilinx,_Inc. 6.0
+CSET data_width = 64
+CSET async_init_value = 0
+CSET set_clear_priority = clear_overrides_set
+CSET sync_init_value = 0
+CSET create_rpm = true
+CSET ge_overrides = sync_controls_override_ge
+CSET asynchronous_settings = none
+CSET synchronous_settings = none
+CSET component_name = reg64
+CSET gate_enable = true
+GENERATE

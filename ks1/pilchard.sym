@@ -1,0 +1,113 @@
+VERSION 5
+BEGIN SYMBOL 
+SYMBOLTYPE BLOCK
+TIMESTAMP 2003 8 14 21 30 40
+SYMPIN 0 -864 Input "pads_exchecker_reset"
+SYMPIN 0 -800 Input "pads_dimm_ck"
+SYMPIN 0 -736 Input "pads_dimm_ras"
+SYMPIN 0 -672 Input "pads_dimm_cas"
+SYMPIN 0 -608 Input "pads_dimm_we"
+SYMPIN 0 -544 Input "pads_dimm_rege"
+SYMPIN 0 -480 Input "pads_dimm_scl"
+SYMPIN 0 -416 Input "pads_dimm_wp"
+SYMPIN 0 -352 Input "pads_dimm_cke(1:0)"
+SYMPIN 0 -288 Input "pads_dimm_s(3:0)"
+SYMPIN 0 -224 Input "pads_dimm_a(13:0)"
+SYMPIN 0 -160 Input "pads_dimm_ba(1:0)"
+SYMPIN 0 -96 Input "pads_dimm_dqmb(7:0)"
+SYMPIN 0 -32 Input "pads_dimm_sa(2:0)"
+SYMPIN 752 -864 BiDirectional "pads_dimm_sda"
+SYMPIN 752 -592 BiDirectional "pads_dimm_d(63:0)"
+SYMPIN 752 -320 BiDirectional "pads_dimm_cb(7:0)"
+SYMPIN 752 -48 BiDirectional "pads_io_conn(27:0)"
+BEGIN DISPLAY 376 -904 ATTR "SymbolName"
+    ALIGNMENT BCENTER
+    FONT 56 "Arial"
+END DISPLAY
+BEGIN DISPLAY 72 -864 PIN "pads_exchecker_reset" ATTR "PinName"
+    FONT 24 "Arial"
+END DISPLAY
+BEGIN DISPLAY 72 -800 PIN "pads_dimm_ck" ATTR "PinName"
+    FONT 24 "Arial"
+END DISPLAY
+BEGIN DISPLAY 72 -736 PIN "pads_dimm_ras" ATTR "PinName"
+    FONT 24 "Arial"
+END DISPLAY
+BEGIN DISPLAY 72 -672 PIN "pads_dimm_cas" ATTR "PinName"
+    FONT 24 "Arial"
+END DISPLAY
+BEGIN DISPLAY 72 -608 PIN "pads_dimm_we" ATTR "PinName"
+    FONT 24 "Arial"
+END DISPLAY
+BEGIN DISPLAY 72 -544 PIN "pads_dimm_rege" ATTR "PinName"
+    FONT 24 "Arial"
+END DISPLAY
+BEGIN DISPLAY 72 -480 PIN "pads_dimm_scl" ATTR "PinName"
+    FONT 24 "Arial"
+END DISPLAY
+BEGIN DISPLAY 72 -416 PIN "pads_dimm_wp" ATTR "PinName"
+    FONT 24 "Arial"
+END DISPLAY
+BEGIN DISPLAY 72 -352 PIN "pads_dimm_cke(1:0)" ATTR "PinName"
+    FONT 24 "Arial"
+END DISPLAY
+BEGIN DISPLAY 72 -288 PIN "pads_dimm_s(3:0)" ATTR "PinName"
+    FONT 24 "Arial"
+END DISPLAY
+BEGIN DISPLAY 72 -224 PIN "pads_dimm_a(13:0)" ATTR "PinName"
+    FONT 24 "Arial"
+END DISPLAY
+BEGIN DISPLAY 72 -160 PIN "pads_dimm_ba(1:0)" ATTR "PinName"
+    FONT 24 "Arial"
+END DISPLAY
+BEGIN DISPLAY 72 -96 PIN "pads_dimm_dqmb(7:0)" ATTR "PinName"
+    FONT 24 "Arial"
+END DISPLAY
+BEGIN DISPLAY 72 -32 PIN "pads_dimm_sa(2:0)" ATTR "PinName"
+    FONT 24 "Arial"
+END DISPLAY
+BEGIN DISPLAY 680 -864 PIN "pads_dimm_sda" ATTR "PinName"
+    ALIGNMENT RIGHT
+    FONT 24 "Arial"
+END DISPLAY
+BEGIN DISPLAY 680 -592 PIN "pads_dimm_d(63:0)" ATTR "PinName"
+    ALIGNMENT RIGHT
+    FONT 24 "Arial"
+END DISPLAY
+BEGIN DISPLAY 680 -320 PIN "pads_dimm_cb(7:0)" ATTR "PinName"
+    ALIGNMENT RIGHT
+    FONT 24 "Arial"
+END DISPLAY
+BEGIN DISPLAY 680 -48 PIN "pads_io_conn(27:0)" ATTR "PinName"
+    ALIGNMENT RIGHT
+    FONT 24 "Arial"
+END DISPLAY
+RECTANGLE N 64 -896 688 0 
+LINE N 64 -864 0 -864 
+LINE N 64 -800 0 -800 
+LINE N 64 -736 0 -736 
+LINE N 64 -672 0 -672 
+LINE N 64 -608 0 -608 
+LINE N 64 -544 0 -544 
+LINE N 64 -480 0 -480 
+LINE N 64 -416 0 -416 
+LINE N 64 -352 0 -352 
+RECTANGLE N 0 -364 64 -340 
+LINE N 64 -288 0 -288 
+RECTANGLE N 0 -300 64 -276 
+LINE N 64 -224 0 -224 
+RECTANGLE N 0 -236 64 -212 
+LINE N 64 -160 0 -160 
+RECTANGLE N 0 -172 64 -148 
+LINE N 64 -96 0 -96 
+RECTANGLE N 0 -108 64 -84 
+LINE N 64 -32 0 -32 
+RECTANGLE N 0 -44 64 -20 
+LINE N 688 -864 752 -864 
+LINE N 688 -592 752 -592 
+RECTANGLE N 688 -604 752 -580 
+LINE N 688 -320 752 -320 
+RECTANGLE N 688 -332 752 -308 
+LINE N 688 -48 752 -48 
+RECTANGLE N 688 -60 752 -36 
+END SYMBOL

@@ -1,0 +1,239 @@
+-- C:\ISE\PIL-KEY-SEARCH
+-- VHDL Annotation Test Bench created by
+-- HDL Bencher 5.1i
+-- Thu Jul 31 22:22:53 2003
+
+LIBRARY  IEEE;
+USE IEEE.STD_LOGIC_1164.ALL;
+USE IEEE.STD_LOGIC_ARITH.ALL;
+USE IEEE.STD_LOGIC_UNSIGNED.ALL;
+
+LIBRARY ieee;
+USE IEEE.STD_LOGIC_TEXTIO.ALL;
+USE STD.TEXTIO.ALL;
+
+ENTITY testbench IS
+END testbench;
+
+ARCHITECTURE testbench_arch OF testbench IS
+-- If you get a compiler error on the following line,
+-- from the menu do Options->Configuration select VHDL 87
+FILE RESULTS: TEXT OPEN WRITE_MODE IS "c:\ise\pil-key-search\cctb.ano";
+	COMPONENT core_controller
+		PORT (
+			din : in  std_logic_vector (63 DOWNTO 0);
+			dout : out  std_logic_vector (63 DOWNTO 0);
+			read : in  std_logic;
+			write : in  std_logic;
+			reset : in  std_logic;
+			clk : in  std_logic;
+			addr : in  std_logic_vector (2 DOWNTO 0);
+			status : in  std_logic_vector (2 DOWNTO 0);
+			data : inout  std_logic_vector (63 DOWNTO 0);
+			coreaddr : out  std_logic_vector (7 DOWNTO 0);
+			cmd : out  std_logic_vector (2 DOWNTO 0);
+			dvalid : out  std_logic;
+			status_write : out  std_logic;
+			keywrite : out  std_logic
+		);
+	END COMPONENT;
+
+	SIGNAL din : std_logic_vector (63 DOWNTO 0);
+	SIGNAL dout : std_logic_vector (63 DOWNTO 0);
+	SIGNAL read : std_logic;
+	SIGNAL write : std_logic;
+	SIGNAL reset : std_logic;
+	SIGNAL clk : std_logic;
+	SIGNAL addr : std_logic_vector (2 DOWNTO 0);
+	SIGNAL status : std_logic_vector (2 DOWNTO 0);
+	SIGNAL data : std_logic_vector (63 DOWNTO 0);
+	SIGNAL coreaddr : std_logic_vector (7 DOWNTO 0);
+	SIGNAL cmd : std_logic_vector (2 DOWNTO 0);
+	SIGNAL dvalid : std_logic;
+	SIGNAL status_write : std_logic;
+	SIGNAL keywrite : std_logic;
+
+BEGIN
+	UUT : core_controller
+	PORT MAP (
+		din => din,
+		dout => dout,
+		read => read,
+		write => write,
+		reset => reset,
+		clk => clk,
+		addr => addr,
+		status => status,
+		data => data,
+		coreaddr => coreaddr,
+		cmd => cmd,
+		dvalid => dvalid,
+		status_write => status_write,
+		keywrite => keywrite
+	);
+
+	PROCESS -- clock process for clk,
+		VARIABLE TX_TIME : INTEGER :=0;
+
+		PROCEDURE ANNOTATE_dout(
+			TX_TIME : INTEGER
+		) IS
+			VARIABLE TX_STR : String(1 to 4096);
+			VARIABLE TX_LOC : LINE;
+		BEGIN
+			write(TX_LOC,string'("Annotate["));
+			write(TX_LOC, TX_TIME);
+			write(TX_LOC,string'(",dout,"));
+			write(TX_LOC, dout);
+			write(TX_LOC, string'("]"));
+			TX_STR(TX_LOC.all'range) := TX_LOC.all;
+			writeline(results, TX_LOC);
+			Deallocate(TX_LOC);
+		END;
+
+		PROCEDURE ANNOTATE_coreaddr(
+			TX_TIME : INTEGER
+		) IS
+			VARIABLE TX_STR : String(1 to 4096);
+			VARIABLE TX_LOC : LINE;
+		BEGIN
+			write(TX_LOC,string'("Annotate["));
+			write(TX_LOC, TX_TIME);
+			write(TX_LOC,string'(",coreaddr,"));
+			write(TX_LOC, coreaddr);
+			write(TX_LOC, string'("]"));
+			TX_STR(TX_LOC.all'range) := TX_LOC.all;
+			writeline(results, TX_LOC);
+			Deallocate(TX_LOC);
+		END;
+
+		PROCEDURE ANNOTATE_cmd(
+			TX_TIME : INTEGER
+		) IS
+			VARIABLE TX_STR : String(1 to 4096);
+			VARIABLE TX_LOC : LINE;
+		BEGIN
+			write(TX_LOC,string'("Annotate["));
+			write(TX_LOC, TX_TIME);
+			write(TX_LOC,string'(",cmd,"));
+			write(TX_LOC, cmd);
+			write(TX_LOC, string'("]"));
+			TX_STR(TX_LOC.all'range) := TX_LOC.all;
+			writeline(results, TX_LOC);
+			Deallocate(TX_LOC);
+		END;
+
+		PROCEDURE ANNOTATE_dvalid(
+			TX_TIME : INTEGER
+		) IS
+			VARIABLE TX_STR : String(1 to 4096);
+			VARIABLE TX_LOC : LINE;
+		BEGIN
+			write(TX_LOC,string'("Annotate["));
+			write(TX_LOC, TX_TIME);
+			write(TX_LOC,string'(",dvalid,"));
+			write(TX_LOC, dvalid);
+			write(TX_LOC, string'("]"));
+			TX_STR(TX_LOC.all'range) := TX_LOC.all;
+			writeline(results, TX_LOC);
+			Deallocate(TX_LOC);
+		END;
+
+		PROCEDURE ANNOTATE_status_write(
+			TX_TIME : INTEGER
+		) IS
+			VARIABLE TX_STR : String(1 to 4096);
+			VARIABLE TX_LOC : LINE;
+		BEGIN
+			write(TX_LOC,string'("Annotate["));
+			write(TX_LOC, TX_TIME);
+			write(TX_LOC,string'(",status_write,"));
+			write(TX_LOC, status_write);
+			write(TX_LOC, string'("]"));
+			TX_STR(TX_LOC.all'range) := TX_LOC.all;
+			writeline(results, TX_LOC);
+			Deallocate(TX_LOC);
+		END;
+
+		PROCEDURE ANNOTATE_keywrite(
+			TX_TIME : INTEGER
+		) IS
+			VARIABLE TX_STR : String(1 to 4096);
+			VARIABLE TX_LOC : LINE;
+		BEGIN
+			write(TX_LOC,string'("Annotate["));
+			write(TX_LOC, TX_TIME);
+			write(TX_LOC,string'(",keywrite,"));
+			write(TX_LOC, keywrite);
+			write(TX_LOC, string'("]"));
+			TX_STR(TX_LOC.all'range) := TX_LOC.all;
+			writeline(results, TX_LOC);
+			Deallocate(TX_LOC);
+		END;
+
+		PROCEDURE ANNOTATE_data(
+			TX_TIME : INTEGER
+		) IS
+			VARIABLE TX_STR : String(1 to 4096);
+			VARIABLE TX_LOC : LINE;
+		BEGIN
+			write(TX_LOC,string'("Annotate["));
+			write(TX_LOC, TX_TIME);
+			write(TX_LOC,string'(",data,"));
+			write(TX_LOC, data);
+			write(TX_LOC, string'("]"));
+			TX_STR(TX_LOC.all'range) := TX_LOC.all;
+			writeline(results, TX_LOC);
+			Deallocate(TX_LOC);
+		END;
+
+	BEGIN
+		CLOCK_LOOP : LOOP
+		clk <= transport '0';
+		WAIT FOR 2 ns;
+		TX_TIME := TX_TIME + 2;
+		clk <= transport '1';
+		WAIT FOR 2 ns;
+		TX_TIME := TX_TIME + 2;
+		ANNOTATE_dout(TX_TIME);
+		ANNOTATE_coreaddr(TX_TIME);
+		ANNOTATE_cmd(TX_TIME);
+		ANNOTATE_dvalid(TX_TIME);
+		ANNOTATE_status_write(TX_TIME);
+		ANNOTATE_keywrite(TX_TIME);
+		ANNOTATE_data(TX_TIME);
+		WAIT FOR 3 ns;
+		TX_TIME := TX_TIME + 3;
+		clk <= transport '0';
+		WAIT FOR 3 ns;
+		TX_TIME := TX_TIME + 3;
+		END LOOP CLOCK_LOOP;
+	END PROCESS;
+
+	PROCESS   -- Process for clk
+		VARIABLE TX_OUT : LINE;
+
+		BEGIN
+		-- --------------------
+		din <= transport std_logic_vector'("0000000000000000000000000000000000000000000000000000000000000000"); --0
+		read <= transport '0';
+		write <= transport '0';
+		reset <= transport '0';
+		addr <= transport std_logic_vector'("000"); --0
+		status <= transport std_logic_vector'("000"); --0
+		-- --------------------
+		WAIT FOR 10 ns; -- Time=10 ns
+		-- --------------------
+
+		write(TX_OUT, string'("Total[]"));
+		writeline(results, TX_OUT);
+		ASSERT (FALSE) REPORT
+			"Success! Simulation for annotation completed"
+			SEVERITY FAILURE;
+	END PROCESS;
+END testbench_arch;
+
+CONFIGURATION core_controller_cfg OF testbench IS
+	FOR testbench_arch
+	END FOR;
+END core_controller_cfg;

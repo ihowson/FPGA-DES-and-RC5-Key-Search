@@ -1,0 +1,40 @@
+# Xilinx CORE Generator 5.2.03i
+# Username = Ian
+# COREGenPath = C:\xilinx\coregen
+# ProjectPath = C:\ise\pil-key-search
+# ExpandedProjectPath = C:\ise\pil-key-search
+# OverwriteFiles = true
+# Core name: reg64
+# Number of Primitives in design: 64
+# Number of CLBs used in design: 32
+# Number of Slices used in design: 32
+# Number of LUT sites used in design: 0
+# Number of LUTs used in design: 0
+# Number of REG used in design: 64
+# Number of SRL16s used in design: 0
+# Number of Distributed RAM primitives used in design: 0
+# Number of Block Memories cannot be determined when there is no RPMed logic
+# Number of Dedicated Multipliers cannot be determined when there is no RPMed logic
+# Number of HU_SETs used: 1
+# Huset "default" = (0, 0) to (1, 32) in CLBs
+# 
+SET BusFormat = BusFormatAngleBracket
+SET SimulationOutputProducts = Verilog VHDL
+SET XilinxFamily = Virtex
+SET OutputOption = DesignFlow
+SET DesignFlow = Vhdl
+SET FlowVendor = Foundation_iSE
+SET FormalVerification = None
+SELECT LD-based_Parallel_Latch Virtex Xilinx,_Inc. 6.0
+CSET data_width = 64
+CSET async_init_value = 0
+CSET set_clear_priority = clear_overrides_set
+CSET sync_init_value = 0
+CSET create_rpm = true
+CSET ge_overrides = sync_controls_override_ge
+CSET asynchronous_settings = none
+CSET synchronous_settings = none
+CSET component_name = reg64
+CSET gate_enable = true
+GENERATE
+

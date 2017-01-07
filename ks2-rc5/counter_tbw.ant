@@ -1,0 +1,154 @@
+-- C:\KS2-1007
+-- VHDL Annotation Test Bench created by
+-- HDL Bencher 5.1i
+-- Tue Oct 14 18:10:02 2003
+
+LIBRARY  IEEE;
+USE IEEE.STD_LOGIC_1164.ALL;
+USE IEEE.STD_LOGIC_ARITH.ALL;
+USE IEEE.STD_LOGIC_UNSIGNED.ALL;
+
+LIBRARY ieee;
+USE IEEE.STD_LOGIC_TEXTIO.ALL;
+USE STD.TEXTIO.ALL;
+
+ENTITY testbench IS
+END testbench;
+
+ARCHITECTURE testbench_arch OF testbench IS
+-- If you get a compiler error on the following line,
+-- from the menu do Options->Configuration select VHDL 87
+FILE RESULTS: TEXT OPEN WRITE_MODE IS "c:\ks2-1007\counter_tbw.ano";
+	COMPONENT counter
+		PORT (
+			clk : in  std_logic;
+			run : in  std_logic;
+			valid : out  std_logic;
+			count : out  std_logic_vector (79 DOWNTO 0);
+			load : in  std_logic;
+			data : in  std_logic_vector (47 DOWNTO 0);
+			nextkey : in  std_logic
+		);
+	END COMPONENT;
+
+	SIGNAL clk : std_logic;
+	SIGNAL run : std_logic;
+	SIGNAL valid : std_logic;
+	SIGNAL count : std_logic_vector (79 DOWNTO 0);
+	SIGNAL load : std_logic;
+	SIGNAL data : std_logic_vector (47 DOWNTO 0);
+	SIGNAL nextkey : std_logic;
+
+BEGIN
+	UUT : counter
+	PORT MAP (
+		clk => clk,
+		run => run,
+		valid => valid,
+		count => count,
+		load => load,
+		data => data,
+		nextkey => nextkey
+	);
+
+	PROCESS -- clock process for clk,
+		VARIABLE TX_TIME : INTEGER :=0;
+
+		PROCEDURE ANNOTATE_valid(
+			TX_TIME : INTEGER
+		) IS
+			VARIABLE TX_STR : String(1 to 4096);
+			VARIABLE TX_LOC : LINE;
+		BEGIN
+			write(TX_LOC,string'("Annotate["));
+			write(TX_LOC, TX_TIME);
+			write(TX_LOC,string'(",valid,"));
+			write(TX_LOC, valid);
+			write(TX_LOC, string'("]"));
+			TX_STR(TX_LOC.all'range) := TX_LOC.all;
+			writeline(results, TX_LOC);
+			Deallocate(TX_LOC);
+		END;
+
+		PROCEDURE ANNOTATE_count(
+			TX_TIME : INTEGER
+		) IS
+			VARIABLE TX_STR : String(1 to 4096);
+			VARIABLE TX_LOC : LINE;
+		BEGIN
+			write(TX_LOC,string'("Annotate["));
+			write(TX_LOC, TX_TIME);
+			write(TX_LOC,string'(",count,"));
+			write(TX_LOC, count);
+			write(TX_LOC, string'("]"));
+			TX_STR(TX_LOC.all'range) := TX_LOC.all;
+			writeline(results, TX_LOC);
+			Deallocate(TX_LOC);
+		END;
+
+	BEGIN
+		CLOCK_LOOP : LOOP
+		clk <= transport '0';
+		WAIT FOR 2 ns;
+		TX_TIME := TX_TIME + 2;
+		clk <= transport '1';
+		WAIT FOR 2 ns;
+		TX_TIME := TX_TIME + 2;
+		ANNOTATE_valid(TX_TIME);
+		ANNOTATE_count(TX_TIME);
+		WAIT FOR 3 ns;
+		TX_TIME := TX_TIME + 3;
+		clk <= transport '0';
+		WAIT FOR 3 ns;
+		TX_TIME := TX_TIME + 3;
+		END LOOP CLOCK_LOOP;
+	END PROCESS;
+
+	PROCESS   -- Process for clk
+		VARIABLE TX_OUT : LINE;
+
+		BEGIN
+		-- --------------------
+		run <= transport '0';
+		load <= transport '0';
+		data <= transport std_logic_vector'("000000000000000000000000000000000000000000000000"); --0
+		nextkey <= transport '0';
+		-- --------------------
+		WAIT FOR 10 ns; -- Time=10 ns
+		load <= transport '1';
+		data <= transport std_logic_vector'("000000000000000000000101010101010101010101010101"); --5555555
+		-- --------------------
+		WAIT FOR 10 ns; -- Time=20 ns
+		run <= transport '1';
+		load <= transport '0';
+		-- --------------------
+		WAIT FOR 20 ns; -- Time=40 ns
+		nextkey <= transport '1';
+		-- --------------------
+		WAIT FOR 20 ns; -- Time=60 ns
+		nextkey <= transport '0';
+		-- --------------------
+		WAIT FOR 10 ns; -- Time=70 ns
+		nextkey <= transport '1';
+		-- --------------------
+		WAIT FOR 10 ns; -- Time=80 ns
+		nextkey <= transport '0';
+		-- --------------------
+		WAIT FOR 10 ns; -- Time=90 ns
+		nextkey <= transport '1';
+		-- --------------------
+		WAIT FOR 260 ns; -- Time=350 ns
+		-- --------------------
+
+		write(TX_OUT, string'("Total[]"));
+		writeline(results, TX_OUT);
+		ASSERT (FALSE) REPORT
+			"Success! Simulation for annotation completed"
+			SEVERITY FAILURE;
+	END PROCESS;
+END testbench_arch;
+
+CONFIGURATION counter_cfg OF testbench IS
+	FOR testbench_arch
+	END FOR;
+END counter_cfg;

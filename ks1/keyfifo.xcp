@@ -1,0 +1,17 @@
+# Xilinx CORE Generator 5.2.03i
+SELECT Synchronous_FIFO Virtex Xilinx,_Inc. 3.0
+CSET data_width = 64
+CSET read_error_sense = Active_Low
+CSET read_error_flag = false
+CSET write_acknowledge_flag = false
+CSET write_error_flag = false
+CSET data_count = false
+CSET memory_type = Block_Memory
+CSET read_acknowledge_sense = Active_Low
+CSET component_name = keyfifo
+CSET fifo_depth = 256
+CSET read_acknowledge_flag = false
+CSET data_count_width = 8
+CSET write_error_sense = Active_Low
+CSET write_acknowledge_sense = Active_Low
+GENERATE

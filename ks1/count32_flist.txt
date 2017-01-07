@@ -1,0 +1,10 @@
+# Output products list for <count32>
+count32.asy
+count32.edn
+count32.v
+count32.veo
+count32.vhd
+count32.vho
+count32.xco
+count32.xcp
+count32.sym

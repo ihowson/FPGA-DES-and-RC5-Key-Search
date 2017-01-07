@@ -1,0 +1,10 @@
+# Output products list for <keyfifo>
+keyfifo.asy
+keyfifo.edn
+keyfifo.v
+keyfifo.veo
+keyfifo.vhd
+keyfifo.vho
+keyfifo.xco
+keyfifo.xcp
+keyfifo.sym

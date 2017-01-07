@@ -1,0 +1,10 @@
+# Output products list for <reg64>
+reg64.asy
+reg64.edn
+reg64.v
+reg64.veo
+reg64.vhd
+reg64.vho
+reg64.xco
+reg64.xcp
+reg64.sym

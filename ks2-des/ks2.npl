@@ -1,0 +1,94 @@
+JDF F
+// Created by Project Navigator ver 1.0
+PROJECT ks2
+DESIGN ks2 Normal
+DEVFAM virtexe
+DEVFAMTIME 1066885859
+DEVICE xcv1000e
+DEVICETIME 1066885859
+DEVPKG hq240
+DEVPKGTIME 1066885859
+DEVSPEED -6
+DEVSPEEDTIME 1066885859
+FLOW XST VHDL
+FLOWTIME 0
+STIMULUS des_tb.vhd Normal
+STIMULUS compare_tbw.tbw Normal
+STIMULUS rol_v_32_tbw.tbw Normal
+STIMULUS ror_v_32_tbw.tbw Normal
+STIMULUS run_control_tbw.tbw Normal
+STIMULUS counter_tbw.tbw Normal
+STIMULUS rc5_decrypt_top_tb.vhd Normal
+STIMULUS decryptdes_tb.vhd Normal
+STIMULUS pcore_tb.vhd Normal
+STIMULUS rc5_keyschedule_tbw.tbw Normal
+STIMULUS compare_statistical_fast_tb.vhd Normal
+MODULE rol_v_32.vhd
+MODSTYLE rol_v_32 Normal
+MODULE pcore.vhd
+MODSTYLE pcore Normal
+MODULE search_units.vhd
+MODSTYLE search_units Normal
+MODULE compare_statistical.vhd
+MODSTYLE compare_statistical_fast Normal
+MODULE ror_v_32.vhd
+MODSTYLE ror_v_32 Normal
+MODULE rc5_ram.vhd
+MODSTYLE rc5_ram Normal
+MODULE sureg.vhd
+MODSTYLE sureg Normal
+MODULE rc5_keyschedule.vhd
+MODSTYLE rc5_keyschedule Normal
+MODULE searchunit.vhd
+MODSTYLE searchunit Normal
+MODULE rc5_decrypt_top.sch
+MODSTYLE rc5_decrypt_top Normal
+MODULE run_control.vhd
+MODSTYLE run_control Normal
+MODULE compare_exact.vhd
+MODSTYLE compare_exact Normal
+MODULE des_lib.vhd
+MODSTYLE m2_1 Normal
+MODSTYLE fd Normal
+MODULE rc5_decrypt.vhd
+MODSTYLE rc5_decrypt Normal
+MODULE split_counter.vhd
+MODSTYLE counter Normal
+MODULE addr_decode.vhd
+MODSTYLE addr_decode Normal
+MODULE pilchard.vhd
+MODSTYLE pilchard Normal
+MODULE des_pc0.vhd
+MODSTYLE s3 Normal
+MODSTYLE s4 Normal
+MODSTYLE s5 Normal
+MODSTYLE pc1 Normal
+MODSTYLE pc2 Normal
+MODSTYLE s6 Normal
+MODSTYLE s7 Normal
+MODSTYLE s8 Normal
+MODSTYLE s1 Normal
+MODSTYLE s2 Normal
+MODULE decrypt.vhd
+MODSTYLE decrypt Normal
+MODULE des_pc1.vhd
+MODSTYLE ip Normal
+MODSTYLE xp Normal
+MODSTYLE desxor1 Normal
+MODSTYLE desxor2 Normal
+MODSTYLE pp Normal
+MODSTYLE keysched Normal
+MODULE des_pc2.vhd
+MODSTYLE roundfunc Normal
+MODSTYLE fp Normal
+MODULE des_pc3.vhd
+MODSTYLE decryptdes Normal
+MODULE clock2x.vhd
+MODSTYLE dll_standard Normal
+DEPASSOC pilchard cons.ucf Normal
+[Normal]
+p_xstHierarchySeparator=xstvhd, virtexe, Schematic.t_synthesize, 1064731829, /
+xilxPAReffortLevel=xstvhd, virtexe, Implementation.t_placeAndRouteDes, 1065009264, Highest
+_SynthOptEffort=xstvhd, virtexe, Schematic.t_synthesize, 1064731741, High
+[STRATEGY-LIST]
+Normal=True

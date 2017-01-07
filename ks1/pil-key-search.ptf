@@ -1,0 +1,20 @@
+[cons.ucf]
+User Constraints=true
+[decrypt_wrapper]
+Back-annotate Pin Locations=false
+Generate IBIS Model=false
+Generate Post-Map Static Timing=true
+Generate Post-Place & Route Static Timing=true
+Generate Programming File=false
+Implement Design=true
+Map=false
+Multi Pass Place & Route=false
+Place & Route=true
+Translate=false
+User Constraints=true
+[pcore]
+Implement Design=true
+Map=false
+Place & Route=false
+[xcv1000e-6hq240 - XST VHDL]
+Design Entry Utilities=false

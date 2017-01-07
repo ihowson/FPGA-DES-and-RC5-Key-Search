@@ -1,0 +1,159 @@
+-- C:\0908-DES
+-- VHDL Annotation Test Bench created by
+-- HDL Bencher 5.1i
+-- Fri Sep 19 08:48:32 2003
+
+LIBRARY  ieee;
+USE ieee.std_logic_1164.ALL;
+USE ieee.numeric_std.ALL;
+
+LIBRARY  UNISIM;
+USE UNISIM.Vcomponents.ALL;
+
+LIBRARY ieee;
+USE IEEE.STD_LOGIC_TEXTIO.ALL;
+USE STD.TEXTIO.ALL;
+
+ENTITY testbench IS
+END testbench;
+
+ARCHITECTURE testbench_arch OF testbench IS
+-- If you get a compiler error on the following line,
+-- from the menu do Options->Configuration select VHDL 87
+FILE RESULTS: TEXT OPEN WRITE_MODE IS "c:\0908-des\rc5_decrypt_top_tbw.ano";
+	COMPONENT rc5_decrypt_top
+		PORT (
+			clk : IN  STD_LOGIC;
+			ctext : IN  STD_LOGIC_VECTOR (63 DOWNTO 0);
+			iv : IN  STD_LOGIC_VECTOR (63 DOWNTO 0);
+			run : IN  STD_LOGIC;
+			trial_key : IN  STD_LOGIC_VECTOR (71 DOWNTO 0);
+			next_key : OUT  STD_LOGIC;
+			ptext : OUT  STD_LOGIC_VECTOR (63 DOWNTO 0);
+			ptext_valid : OUT  STD_LOGIC
+		);
+	END COMPONENT;
+
+	SIGNAL clk : STD_LOGIC;
+	SIGNAL ctext : STD_LOGIC_VECTOR (63 DOWNTO 0);
+	SIGNAL iv : STD_LOGIC_VECTOR (63 DOWNTO 0);
+	SIGNAL run : STD_LOGIC;
+	SIGNAL trial_key : STD_LOGIC_VECTOR (71 DOWNTO 0);
+	SIGNAL next_key : STD_LOGIC;
+	SIGNAL ptext : STD_LOGIC_VECTOR (63 DOWNTO 0);
+	SIGNAL ptext_valid : STD_LOGIC;
+
+BEGIN
+	UUT : rc5_decrypt_top
+	PORT MAP (
+		clk => clk,
+		ctext => ctext,
+		iv => iv,
+		run => run,
+		trial_key => trial_key,
+		next_key => next_key,
+		ptext => ptext,
+		ptext_valid => ptext_valid
+	);
+
+	PROCESS -- clock process for clk,
+		VARIABLE TX_TIME : INTEGER :=0;
+
+		PROCEDURE ANNOTATE_next_key(
+			TX_TIME : INTEGER
+		) IS
+			VARIABLE TX_STR : String(1 to 4096);
+			VARIABLE TX_LOC : LINE;
+		BEGIN
+			write(TX_LOC,string'("Annotate["));
+			write(TX_LOC, TX_TIME);
+			write(TX_LOC,string'(",next_key,"));
+			write(TX_LOC, next_key);
+			write(TX_LOC, string'("]"));
+			TX_STR(TX_LOC.all'range) := TX_LOC.all;
+			writeline(results, TX_LOC);
+			Deallocate(TX_LOC);
+		END;
+
+		PROCEDURE ANNOTATE_ptext(
+			TX_TIME : INTEGER
+		) IS
+			VARIABLE TX_STR : String(1 to 4096);
+			VARIABLE TX_LOC : LINE;
+		BEGIN
+			write(TX_LOC,string'("Annotate["));
+			write(TX_LOC, TX_TIME);
+			write(TX_LOC,string'(",ptext,"));
+			write(TX_LOC, ptext);
+			write(TX_LOC, string'("]"));
+			TX_STR(TX_LOC.all'range) := TX_LOC.all;
+			writeline(results, TX_LOC);
+			Deallocate(TX_LOC);
+		END;
+
+		PROCEDURE ANNOTATE_ptext_valid(
+			TX_TIME : INTEGER
+		) IS
+			VARIABLE TX_STR : String(1 to 4096);
+			VARIABLE TX_LOC : LINE;
+		BEGIN
+			write(TX_LOC,string'("Annotate["));
+			write(TX_LOC, TX_TIME);
+			write(TX_LOC,string'(",ptext_valid,"));
+			write(TX_LOC, ptext_valid);
+			write(TX_LOC, string'("]"));
+			TX_STR(TX_LOC.all'range) := TX_LOC.all;
+			writeline(results, TX_LOC);
+			Deallocate(TX_LOC);
+		END;
+
+	BEGIN
+		CLOCK_LOOP : LOOP
+		clk <= transport '0';
+		WAIT FOR 2 ns;
+		TX_TIME := TX_TIME + 2;
+		clk <= transport '1';
+		WAIT FOR 2 ns;
+		TX_TIME := TX_TIME + 2;
+		ANNOTATE_next_key(TX_TIME);
+		ANNOTATE_ptext(TX_TIME);
+		ANNOTATE_ptext_valid(TX_TIME);
+		WAIT FOR 3 ns;
+		TX_TIME := TX_TIME + 3;
+		clk <= transport '0';
+		WAIT FOR 3 ns;
+		TX_TIME := TX_TIME + 3;
+		END LOOP CLOCK_LOOP;
+	END PROCESS;
+
+	PROCESS   -- Process for clk
+		VARIABLE TX_OUT : LINE;
+
+		BEGIN
+		-- --------------------
+		ctext <= transport STD_LOGIC_VECTOR'("0000000000000000000000000000000000000000000000000000000000000000"); --0
+		iv <= transport STD_LOGIC_VECTOR'("0000000000000000000000000000000000000000000000000000000000000000"); --0
+		run <= transport '0';
+		trial_key <= transport STD_LOGIC_VECTOR'("000000000000000000000000000000000000000000000000000000000000000000000000"); --0
+		-- --------------------
+		WAIT FOR 150 ns; -- Time=150 ns
+		ctext <= transport STD_LOGIC_VECTOR'("0101011000101101001010000101101000101111101101111000010100101010"); --562D285A2FB7852A
+		iv <= transport STD_LOGIC_VECTOR'("0001111101011001110011100000011101000001100110100001010010000110"); --1F59CE07419A1486
+		run <= transport '1';
+		trial_key <= transport STD_LOGIC_VECTOR'("110010010000110000000011010100111100000011010100111000011111111010000101"); --C90C0353C0D4E1FE85
+		-- --------------------
+		WAIT FOR 482 ns; -- Time=632 ns
+		-- --------------------
+
+		write(TX_OUT, string'("Total[]"));
+		writeline(results, TX_OUT);
+		ASSERT (FALSE) REPORT
+			"Success! Simulation for annotation completed"
+			SEVERITY FAILURE;
+	END PROCESS;
+END testbench_arch;
+
+CONFIGURATION rc5_decrypt_top_cfg OF testbench IS
+	FOR testbench_arch
+	END FOR;
+END rc5_decrypt_top_cfg;

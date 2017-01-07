@@ -1,0 +1,205 @@
+VERSION 6
+BEGIN SCHEMATIC
+    BEGIN ATTR DeviceFamilyName "virtexe"
+        DELETE all:0
+        EDITNAME all:0
+        EDITTRAIT all:0
+    END ATTR
+    BEGIN NETLIST
+        SIGNAL "a(31:0)"
+        SIGNAL "b(31:0)"
+        SIGNAL "apb(31:0)"
+        SIGNAL "key(71:0)"
+        SIGNAL "ramdout(31:0)"
+        SIGNAL "ramaddr(7:0)"
+        SIGNAL "ramdin(31:0)"
+        SIGNAL "ramsel"
+        SIGNAL "ramwe"
+        SIGNAL "XLXN_10"
+        SIGNAL "XLXN_12(31:0)"
+        SIGNAL "apb_regval(31:0)"
+        SIGNAL "sab(31:0)"
+        SIGNAL "XLXN_15(31:0)"
+        PORT Input "key(71:0)"
+        PORT Input "ramdout(31:0)"
+        PORT Output "ramaddr(7:0)"
+        PORT Output "ramdin(31:0)"
+        PORT Output "ramsel"
+        PORT Output "ramwe"
+        BEGIN BLOCKDEF "reg32"
+            TIMESTAMP 2003 9 13 2 38 14
+            RECTANGLE N 64 -256 320 -64 
+            LINE N 64 -96 0 -96 
+            LINE N 64 -160 0 -160 
+            LINE N 64 -224 0 -224 
+            RECTANGLE N 0 -236 64 -212 
+            LINE N 384 -224 320 -224 
+            RECTANGLE N 320 -236 384 -212 
+        END BLOCKDEF
+        BEGIN BLOCKDEF "add32"
+            TIMESTAMP 2003 9 13 2 18 55
+            RECTANGLE N 64 -128 336 0 
+            LINE N 64 -96 0 -96 
+            RECTANGLE N 0 -108 64 -84 
+            LINE N 64 -32 0 -32 
+            RECTANGLE N 0 -44 64 -20 
+            LINE N 336 -96 400 -96 
+            RECTANGLE N 336 -108 400 -84 
+        END BLOCKDEF
+        BEGIN BLOCKDEF "rol_v_32"
+            TIMESTAMP 2003 9 25 0 11 29
+            LINE N 64 144 0 144 
+            LINE N 64 224 0 224 
+            LINE N 64 -96 0 -96 
+            RECTANGLE N 0 -108 64 -84 
+            LINE N 64 -16 0 -16 
+            RECTANGLE N 0 -28 64 -4 
+            LINE N 0 64 64 64 
+            RECTANGLE N 0 52 64 76 
+            RECTANGLE N 64 -128 336 256 
+        END BLOCKDEF
+        BEGIN BLOCKDEF "rol_3_32"
+            TIMESTAMP 2003 9 13 1 16 50
+            RECTANGLE N 64 -64 336 0 
+            LINE N 64 -32 0 -32 
+            RECTANGLE N 0 -44 64 -20 
+            LINE N 336 -32 400 -32 
+            RECTANGLE N 336 -44 400 -20 
+        END BLOCKDEF
+        BEGIN BLOCK "a_reg" "reg32"
+            PIN "en"
+            PIN "clk"
+            PIN "d(31:0)"
+            PIN "q(31:0)" "a(31:0)"
+        END BLOCK
+        BEGIN BLOCK "b_reg" "reg32"
+            PIN "en"
+            PIN "clk"
+            PIN "d(31:0)"
+            PIN "q(31:0)" "b(31:0)"
+        END BLOCK
+        BEGIN BLOCK "apb_reg" "reg32"
+            PIN "en"
+            PIN "clk"
+            PIN "d(31:0)" "apb(31:0)"
+            PIN "q(31:0)" "apb_regval(31:0)"
+        END BLOCK
+        BEGIN BLOCK "apb" "add32"
+            PIN "a(31:0)" "a(31:0)"
+            PIN "b(31:0)" "b(31:0)"
+            PIN "x(31:0)" "apb(31:0)"
+        END BLOCK
+        BEGIN BLOCK "XLXI_5" "rol_v_32"
+            PIN "x(31:0)"
+            PIN "amt(4:0)"
+            PIN "y(31:0)"
+            PIN "clk"
+            PIN "run"
+        END BLOCK
+        BEGIN BLOCK "sab" "add32"
+            PIN "a(31:0)" "apb_regval(31:0)"
+            PIN "b(31:0)" "ramdout(31:0)"
+            PIN "x(31:0)" "sab(31:0)"
+        END BLOCK
+        BEGIN BLOCK "rotsab" "rol_3_32"
+            PIN "x(31:0)" "sab(31:0)"
+            PIN "y(31:0)"
+        END BLOCK
+    END NETLIST
+    BEGIN SHEET 1 3520 2720
+        BEGIN INSTANCE "apb" 1248 1296 R0
+        END INSTANCE
+        BEGIN BRANCH "a(31:0)"
+            WIRE 912 1200 1024 1200
+            WIRE 1024 1200 1248 1200
+            BEGIN DISPLAY 1024 1200 ATTR "Name"
+                ALIGNMENT SOFT-BCENTER
+            END DISPLAY
+        END BRANCH
+        BEGIN BRANCH "b(31:0)"
+            WIRE 912 1504 1232 1504
+            WIRE 1232 1264 1248 1264
+            WIRE 1232 1264 1232 1456
+            WIRE 1232 1456 1232 1504
+            BEGIN DISPLAY 1232 1456 ATTR "Name"
+                ALIGNMENT SOFT-TVCENTER
+            END DISPLAY
+        END BRANCH
+        BEGIN BRANCH "apb(31:0)"
+            WIRE 1648 1200 1696 1200
+            WIRE 1696 1200 1872 1200
+            BEGIN DISPLAY 1696 1200 ATTR "Name"
+                ALIGNMENT SOFT-BCENTER
+            END DISPLAY
+        END BRANCH
+        BEGIN INSTANCE "a_reg" 528 1424 R0
+        END INSTANCE
+        BEGIN INSTANCE "b_reg" 528 1728 R0
+        END INSTANCE
+        BEGIN INSTANCE "apb_reg" 1872 1424 R0
+        END INSTANCE
+        BEGIN BRANCH "key(71:0)"
+            WIRE 512 2064 576 2064
+            WIRE 576 2064 896 2064
+            BEGIN DISPLAY 576 2064 ATTR "Name"
+                ALIGNMENT SOFT-BCENTER
+            END DISPLAY
+        END BRANCH
+        IOMARKER 512 2064 "key(71:0)" R180 28
+        BEGIN BRANCH "ramaddr(7:0)"
+            WIRE 1696 2096 1824 2096
+            WIRE 1824 2096 2016 2096
+            BEGIN DISPLAY 1824 2096 ATTR "Name"
+                ALIGNMENT SOFT-BCENTER
+            END DISPLAY
+        END BRANCH
+        BEGIN BRANCH "ramdin(31:0)"
+            WIRE 1712 2224 1808 2224
+            WIRE 1808 2224 2032 2224
+            BEGIN DISPLAY 1808 2224 ATTR "Name"
+                ALIGNMENT SOFT-BCENTER
+            END DISPLAY
+        END BRANCH
+        IOMARKER 2016 2096 "ramaddr(7:0)" R0 28
+        IOMARKER 2032 2224 "ramdin(31:0)" R0 28
+        BEGIN BRANCH "ramsel"
+            WIRE 1808 2448 2032 2448
+            WIRE 2032 2448 2272 2448
+            BEGIN DISPLAY 2032 2448 ATTR "Name"
+                ALIGNMENT SOFT-BCENTER
+            END DISPLAY
+        END BRANCH
+        BEGIN BRANCH "ramwe"
+            WIRE 1808 2544 2016 2544
+            WIRE 2016 2544 2288 2544
+            BEGIN DISPLAY 2016 2544 ATTR "Name"
+                ALIGNMENT SOFT-BCENTER
+            END DISPLAY
+        END BRANCH
+        IOMARKER 2272 2448 "ramsel" R0 28
+        IOMARKER 2288 2544 "ramwe" R0 28
+        BEGIN BRANCH "ramdout(31:0)"
+            WIRE 2416 1264 2464 1264
+            WIRE 2464 1264 2480 1264
+        END BRANCH
+        BEGIN INSTANCE "rotsab" 2960 1552 R0
+        END INSTANCE
+        BEGIN BRANCH "sab(31:0)"
+            WIRE 2880 1200 2896 1200
+            WIRE 2896 1200 2896 1520
+            WIRE 2896 1520 2960 1520
+            BEGIN DISPLAY 2896 1520 ATTR "Name"
+                ALIGNMENT SOFT-TCENTER
+            END DISPLAY
+        END BRANCH
+        BEGIN INSTANCE "XLXI_5" 1840 272 R0
+        END INSTANCE
+        BEGIN INSTANCE "sab" 2480 1296 R0
+        END INSTANCE
+        BEGIN BRANCH "apb_regval(31:0)"
+            WIRE 2256 1200 2352 1200
+            WIRE 2352 1200 2480 1200
+        END BRANCH
+        IOMARKER 2416 1264 "ramdout(31:0)" R180 28
+    END SHEET
+END SCHEMATIC

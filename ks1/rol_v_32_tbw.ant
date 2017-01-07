@@ -1,0 +1,186 @@
+-- C:\0908-DES
+-- VHDL Annotation Test Bench created by
+-- HDL Bencher 5.1i
+-- Sat Sep 13 20:00:38 2003
+
+LIBRARY  IEEE;
+USE IEEE.STD_LOGIC_1164.ALL;
+USE IEEE.STD_LOGIC_ARITH.ALL;
+USE IEEE.STD_LOGIC_UNSIGNED.ALL;
+
+LIBRARY ieee;
+USE IEEE.STD_LOGIC_TEXTIO.ALL;
+USE STD.TEXTIO.ALL;
+
+ENTITY testbench IS
+END testbench;
+
+ARCHITECTURE testbench_arch OF testbench IS
+-- If you get a compiler error on the following line,
+-- from the menu do Options->Configuration select VHDL 87
+FILE RESULTS: TEXT OPEN WRITE_MODE IS "c:\0908-des\rol_v_32_tbw.ano";
+	COMPONENT rol_v_32
+		PORT (
+			x : in  std_logic_vector (31 DOWNTO 0);
+			amt : in  std_logic_vector (4 DOWNTO 0);
+			y : out  std_logic_vector (31 DOWNTO 0)
+		);
+	END COMPONENT;
+
+	SIGNAL x : std_logic_vector (31 DOWNTO 0);
+	SIGNAL amt : std_logic_vector (4 DOWNTO 0);
+	SIGNAL y : std_logic_vector (31 DOWNTO 0);
+
+BEGIN
+	UUT : rol_v_32
+	PORT MAP (
+		x => x,
+		amt => amt,
+		y => y
+	);
+
+	PROCESS -- Annotate outputs process
+		VARIABLE TX_TIME : INTEGER :=0;
+
+		PROCEDURE ANNOTATE_y(
+			TX_TIME : INTEGER
+		) IS
+			VARIABLE TX_STR : String(1 to 4096);
+			VARIABLE TX_LOC : LINE;
+		BEGIN
+			write(TX_LOC,string'("Annotate["));
+			write(TX_LOC, TX_TIME);
+			write(TX_LOC,string'(",y,"));
+			write(TX_LOC, y);
+			write(TX_LOC, string'("]"));
+			TX_STR(TX_LOC.all'range) := TX_LOC.all;
+			writeline(results, TX_LOC);
+			Deallocate(TX_LOC);
+		END;
+
+	BEGIN
+		CHECK_LOOP : LOOP
+		WAIT FOR 50 ns;
+		TX_TIME := TX_TIME + 50;
+		ANNOTATE_y(TX_TIME);
+		WAIT FOR 50 ns;
+		TX_TIME := TX_TIME + 50;
+		END LOOP CHECK_LOOP;
+	END PROCESS;
+
+	PROCESS
+		VARIABLE TX_OUT : LINE;
+
+		BEGIN
+		-- --------------------
+		x <= transport std_logic_vector'("00000000000000000000000000000001"); --1
+		amt <= transport std_logic_vector'("00000"); --0
+		-- --------------------
+		WAIT FOR 100 ns; -- Time=100 ns
+		amt <= transport std_logic_vector'("00001"); --1
+		-- --------------------
+		WAIT FOR 100 ns; -- Time=200 ns
+		amt <= transport std_logic_vector'("00010"); --2
+		-- --------------------
+		WAIT FOR 100 ns; -- Time=300 ns
+		amt <= transport std_logic_vector'("00011"); --3
+		-- --------------------
+		WAIT FOR 100 ns; -- Time=400 ns
+		amt <= transport std_logic_vector'("00100"); --4
+		-- --------------------
+		WAIT FOR 100 ns; -- Time=500 ns
+		amt <= transport std_logic_vector'("00101"); --5
+		-- --------------------
+		WAIT FOR 100 ns; -- Time=600 ns
+		amt <= transport std_logic_vector'("00110"); --6
+		-- --------------------
+		WAIT FOR 100 ns; -- Time=700 ns
+		amt <= transport std_logic_vector'("00111"); --7
+		-- --------------------
+		WAIT FOR 100 ns; -- Time=800 ns
+		amt <= transport std_logic_vector'("01000"); --8
+		-- --------------------
+		WAIT FOR 100 ns; -- Time=900 ns
+		amt <= transport std_logic_vector'("01001"); --9
+		-- --------------------
+		WAIT FOR 100 ns; -- Time=1000 ns
+		amt <= transport std_logic_vector'("01010"); --A
+		-- --------------------
+		WAIT FOR 100 ns; -- Time=1100 ns
+		amt <= transport std_logic_vector'("01011"); --B
+		-- --------------------
+		WAIT FOR 100 ns; -- Time=1200 ns
+		amt <= transport std_logic_vector'("01100"); --C
+		-- --------------------
+		WAIT FOR 100 ns; -- Time=1300 ns
+		amt <= transport std_logic_vector'("01101"); --D
+		-- --------------------
+		WAIT FOR 100 ns; -- Time=1400 ns
+		amt <= transport std_logic_vector'("01110"); --E
+		-- --------------------
+		WAIT FOR 100 ns; -- Time=1500 ns
+		amt <= transport std_logic_vector'("01111"); --F
+		-- --------------------
+		WAIT FOR 100 ns; -- Time=1600 ns
+		amt <= transport std_logic_vector'("10000"); --10
+		-- --------------------
+		WAIT FOR 100 ns; -- Time=1700 ns
+		amt <= transport std_logic_vector'("10001"); --11
+		-- --------------------
+		WAIT FOR 100 ns; -- Time=1800 ns
+		amt <= transport std_logic_vector'("10010"); --12
+		-- --------------------
+		WAIT FOR 100 ns; -- Time=1900 ns
+		amt <= transport std_logic_vector'("10011"); --13
+		-- --------------------
+		WAIT FOR 100 ns; -- Time=2000 ns
+		amt <= transport std_logic_vector'("10100"); --14
+		-- --------------------
+		WAIT FOR 100 ns; -- Time=2100 ns
+		amt <= transport std_logic_vector'("10101"); --15
+		-- --------------------
+		WAIT FOR 100 ns; -- Time=2200 ns
+		amt <= transport std_logic_vector'("10110"); --16
+		-- --------------------
+		WAIT FOR 100 ns; -- Time=2300 ns
+		amt <= transport std_logic_vector'("10111"); --17
+		-- --------------------
+		WAIT FOR 100 ns; -- Time=2400 ns
+		amt <= transport std_logic_vector'("11000"); --18
+		-- --------------------
+		WAIT FOR 100 ns; -- Time=2500 ns
+		amt <= transport std_logic_vector'("11001"); --19
+		-- --------------------
+		WAIT FOR 100 ns; -- Time=2600 ns
+		amt <= transport std_logic_vector'("11010"); --1A
+		-- --------------------
+		WAIT FOR 100 ns; -- Time=2700 ns
+		amt <= transport std_logic_vector'("11011"); --1B
+		-- --------------------
+		WAIT FOR 100 ns; -- Time=2800 ns
+		amt <= transport std_logic_vector'("11100"); --1C
+		-- --------------------
+		WAIT FOR 100 ns; -- Time=2900 ns
+		amt <= transport std_logic_vector'("11101"); --1D
+		-- --------------------
+		WAIT FOR 100 ns; -- Time=3000 ns
+		amt <= transport std_logic_vector'("11110"); --1E
+		-- --------------------
+		WAIT FOR 100 ns; -- Time=3100 ns
+		amt <= transport std_logic_vector'("11111"); --1F
+		-- --------------------
+		WAIT FOR 150 ns; -- Time=3250 ns
+		-- --------------------
+
+		write(TX_OUT, string'("Total[]"));
+		writeline(results, TX_OUT);
+		ASSERT (FALSE) REPORT
+			"Success! Simulation for annotation completed"
+			SEVERITY FAILURE;
+	END PROCESS;
+END testbench_arch;
+
+CONFIGURATION rol_v_32_cfg OF testbench IS
+	FOR testbench_arch
+	END FOR;
+END rol_v_32_cfg;

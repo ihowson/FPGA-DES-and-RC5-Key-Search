@@ -1,0 +1,299 @@
+-- C:\0908-DES
+-- VHDL Annotation Test Bench created by
+-- HDL Bencher 5.1i
+-- Wed Sep 17 13:16:26 2003
+
+LIBRARY  IEEE;
+USE IEEE.STD_LOGIC_1164.ALL;
+USE IEEE.STD_LOGIC_ARITH.ALL;
+USE IEEE.STD_LOGIC_UNSIGNED.ALL;
+
+LIBRARY ieee;
+USE IEEE.STD_LOGIC_TEXTIO.ALL;
+USE STD.TEXTIO.ALL;
+
+ENTITY testbench IS
+END testbench;
+
+ARCHITECTURE testbench_arch OF testbench IS
+-- If you get a compiler error on the following line,
+-- from the menu do Options->Configuration select VHDL 87
+FILE RESULTS: TEXT OPEN WRITE_MODE IS "c:\0908-des\rc5_decrypt_tbw.ano";
+	COMPONENT rc5_decrypt
+		PORT (
+			clk : in  std_logic;
+			run : in  std_logic;
+			ctext : in  std_logic_vector (63 DOWNTO 0);
+			iv : in  std_logic_vector (63 DOWNTO 0);
+			ptext : out  std_logic_vector (63 DOWNTO 0);
+			ptext_valid : out  std_logic;
+			nextkey : out  std_logic;
+			ramsel : in  std_logic;
+			ramdin : out  std_logic_vector (31 DOWNTO 0);
+			ramdout : in  std_logic_vector (31 DOWNTO 0);
+			ramaddr : out  std_logic_vector (7 DOWNTO 0);
+			ramwe : out  std_logic
+		);
+	END COMPONENT;
+
+	SIGNAL clk : std_logic;
+	SIGNAL run : std_logic;
+	SIGNAL ctext : std_logic_vector (63 DOWNTO 0);
+	SIGNAL iv : std_logic_vector (63 DOWNTO 0);
+	SIGNAL ptext : std_logic_vector (63 DOWNTO 0);
+	SIGNAL ptext_valid : std_logic;
+	SIGNAL nextkey : std_logic;
+	SIGNAL ramsel : std_logic;
+	SIGNAL ramdin : std_logic_vector (31 DOWNTO 0);
+	SIGNAL ramdout : std_logic_vector (31 DOWNTO 0);
+	SIGNAL ramaddr : std_logic_vector (7 DOWNTO 0);
+	SIGNAL ramwe : std_logic;
+
+BEGIN
+	UUT : rc5_decrypt
+	PORT MAP (
+		clk => clk,
+		run => run,
+		ctext => ctext,
+		iv => iv,
+		ptext => ptext,
+		ptext_valid => ptext_valid,
+		nextkey => nextkey,
+		ramsel => ramsel,
+		ramdin => ramdin,
+		ramdout => ramdout,
+		ramaddr => ramaddr,
+		ramwe => ramwe
+	);
+
+	PROCESS -- clock process for clk,
+		VARIABLE TX_TIME : INTEGER :=0;
+
+		PROCEDURE ANNOTATE_ptext(
+			TX_TIME : INTEGER
+		) IS
+			VARIABLE TX_STR : String(1 to 4096);
+			VARIABLE TX_LOC : LINE;
+		BEGIN
+			write(TX_LOC,string'("Annotate["));
+			write(TX_LOC, TX_TIME);
+			write(TX_LOC,string'(",ptext,"));
+			write(TX_LOC, ptext);
+			write(TX_LOC, string'("]"));
+			TX_STR(TX_LOC.all'range) := TX_LOC.all;
+			writeline(results, TX_LOC);
+			Deallocate(TX_LOC);
+		END;
+
+		PROCEDURE ANNOTATE_ptext_valid(
+			TX_TIME : INTEGER
+		) IS
+			VARIABLE TX_STR : String(1 to 4096);
+			VARIABLE TX_LOC : LINE;
+		BEGIN
+			write(TX_LOC,string'("Annotate["));
+			write(TX_LOC, TX_TIME);
+			write(TX_LOC,string'(",ptext_valid,"));
+			write(TX_LOC, ptext_valid);
+			write(TX_LOC, string'("]"));
+			TX_STR(TX_LOC.all'range) := TX_LOC.all;
+			writeline(results, TX_LOC);
+			Deallocate(TX_LOC);
+		END;
+
+		PROCEDURE ANNOTATE_ramdin(
+			TX_TIME : INTEGER
+		) IS
+			VARIABLE TX_STR : String(1 to 4096);
+			VARIABLE TX_LOC : LINE;
+		BEGIN
+			write(TX_LOC,string'("Annotate["));
+			write(TX_LOC, TX_TIME);
+			write(TX_LOC,string'(",ramdin,"));
+			write(TX_LOC, ramdin);
+			write(TX_LOC, string'("]"));
+			TX_STR(TX_LOC.all'range) := TX_LOC.all;
+			writeline(results, TX_LOC);
+			Deallocate(TX_LOC);
+		END;
+
+		PROCEDURE ANNOTATE_ramaddr(
+			TX_TIME : INTEGER
+		) IS
+			VARIABLE TX_STR : String(1 to 4096);
+			VARIABLE TX_LOC : LINE;
+		BEGIN
+			write(TX_LOC,string'("Annotate["));
+			write(TX_LOC, TX_TIME);
+			write(TX_LOC,string'(",ramaddr,"));
+			write(TX_LOC, ramaddr);
+			write(TX_LOC, string'("]"));
+			TX_STR(TX_LOC.all'range) := TX_LOC.all;
+			writeline(results, TX_LOC);
+			Deallocate(TX_LOC);
+		END;
+
+		PROCEDURE ANNOTATE_ramwe(
+			TX_TIME : INTEGER
+		) IS
+			VARIABLE TX_STR : String(1 to 4096);
+			VARIABLE TX_LOC : LINE;
+		BEGIN
+			write(TX_LOC,string'("Annotate["));
+			write(TX_LOC, TX_TIME);
+			write(TX_LOC,string'(",ramwe,"));
+			write(TX_LOC, ramwe);
+			write(TX_LOC, string'("]"));
+			TX_STR(TX_LOC.all'range) := TX_LOC.all;
+			writeline(results, TX_LOC);
+			Deallocate(TX_LOC);
+		END;
+
+		PROCEDURE ANNOTATE_nextkey(
+			TX_TIME : INTEGER
+		) IS
+			VARIABLE TX_STR : String(1 to 4096);
+			VARIABLE TX_LOC : LINE;
+		BEGIN
+			write(TX_LOC,string'("Annotate["));
+			write(TX_LOC, TX_TIME);
+			write(TX_LOC,string'(",nextkey,"));
+			write(TX_LOC, nextkey);
+			write(TX_LOC, string'("]"));
+			TX_STR(TX_LOC.all'range) := TX_LOC.all;
+			writeline(results, TX_LOC);
+			Deallocate(TX_LOC);
+		END;
+
+	BEGIN
+		CLOCK_LOOP : LOOP
+		clk <= transport '0';
+		WAIT FOR 2 ns;
+		TX_TIME := TX_TIME + 2;
+		clk <= transport '1';
+		WAIT FOR 2 ns;
+		TX_TIME := TX_TIME + 2;
+		ANNOTATE_ptext(TX_TIME);
+		ANNOTATE_ptext_valid(TX_TIME);
+		ANNOTATE_ramdin(TX_TIME);
+		ANNOTATE_ramaddr(TX_TIME);
+		ANNOTATE_ramwe(TX_TIME);
+		ANNOTATE_nextkey(TX_TIME);
+		WAIT FOR 3 ns;
+		TX_TIME := TX_TIME + 3;
+		clk <= transport '0';
+		WAIT FOR 3 ns;
+		TX_TIME := TX_TIME + 3;
+		END LOOP CLOCK_LOOP;
+	END PROCESS;
+
+	PROCESS   -- Process for clk
+		VARIABLE TX_OUT : LINE;
+
+		BEGIN
+		-- --------------------
+		run <= transport '1';
+		ctext <= transport std_logic_vector'("0101011000101101001010000101101000101111101101111000010100101010"); --562D285A2FB7852A
+		iv <= transport std_logic_vector'("0001111101011001110011100000011101000001100110100001010010000110"); --1F59CE07419A1486
+		ramsel <= transport '1';
+		ramdout <= transport std_logic_vector'("UUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUU"); --U
+		-- --------------------
+		WAIT FOR 10 ns; -- Time=10 ns
+		ramsel <= transport '0';
+		-- --------------------
+		WAIT FOR 20 ns; -- Time=30 ns
+		ramdout <= transport std_logic_vector'("00000010011101111010111001010001"); --277AE51
+		-- --------------------
+		WAIT FOR 50 ns; -- Time=80 ns
+		ramdout <= transport std_logic_vector'("00011101100101110101101110111101"); --1D975BBD
+		-- --------------------
+		WAIT FOR 40 ns; -- Time=120 ns
+		ramdout <= transport std_logic_vector'("11111001110010101111011010001111"); --F9CAF68F
+		-- --------------------
+		WAIT FOR 40 ns; -- Time=160 ns
+		ramdout <= transport std_logic_vector'("11001100011001011011111011011011"); --CC65BEDB
+		-- --------------------
+		WAIT FOR 40 ns; -- Time=200 ns
+		ramdout <= transport std_logic_vector'("11101111101011011110101101101001"); --EFADEB69
+		-- --------------------
+		WAIT FOR 40 ns; -- Time=240 ns
+		ramdout <= transport std_logic_vector'("01000000100101110010101100110001"); --40972B31
+		-- --------------------
+		WAIT FOR 40 ns; -- Time=280 ns
+		ramdout <= transport std_logic_vector'("11000000101101100101111111111100"); --C0B65FFC
+		-- --------------------
+		WAIT FOR 40 ns; -- Time=320 ns
+		ramdout <= transport std_logic_vector'("11111011101010000010010111000100"); --FBA825C4
+		-- --------------------
+		WAIT FOR 40 ns; -- Time=360 ns
+		ramdout <= transport std_logic_vector'("01001000011010011010100100110100"); --4869A934
+		-- --------------------
+		WAIT FOR 40 ns; -- Time=400 ns
+		ramdout <= transport std_logic_vector'("01111111011000000100011110010110"); --7F604796
+		-- --------------------
+		WAIT FOR 40 ns; -- Time=440 ns
+		ramdout <= transport std_logic_vector'("00001001001101110101011011101000"); --93756E8
+		-- --------------------
+		WAIT FOR 40 ns; -- Time=480 ns
+		ramdout <= transport std_logic_vector'("01100110111111001101011100110011"); --66FCD733
+		-- --------------------
+		WAIT FOR 40 ns; -- Time=520 ns
+		ramdout <= transport std_logic_vector'("00011100000111111101101000110001"); --1C1FDA31
+		-- --------------------
+		WAIT FOR 40 ns; -- Time=560 ns
+		ramdout <= transport std_logic_vector'("01111011101100110101000110101101"); --7BB351AD
+		-- --------------------
+		WAIT FOR 40 ns; -- Time=600 ns
+		ramdout <= transport std_logic_vector'("10110000010011100000011101100110"); --B04E0766
+		-- --------------------
+		WAIT FOR 40 ns; -- Time=640 ns
+		ramdout <= transport std_logic_vector'("11100101100101100011111101111100"); --E5963F7C
+		-- --------------------
+		WAIT FOR 40 ns; -- Time=680 ns
+		ramdout <= transport std_logic_vector'("10010100010101000000100011100001"); --945408E1
+		-- --------------------
+		WAIT FOR 40 ns; -- Time=720 ns
+		ramdout <= transport std_logic_vector'("01100001011101011001010011110001"); --617594F1
+		-- --------------------
+		WAIT FOR 40 ns; -- Time=760 ns
+		ramdout <= transport std_logic_vector'("10001110011010011001000010011000"); --8E699098
+		-- --------------------
+		WAIT FOR 40 ns; -- Time=800 ns
+		ramdout <= transport std_logic_vector'("01001011110100001010110100010011"); --4BD0AD13
+		-- --------------------
+		WAIT FOR 40 ns; -- Time=840 ns
+		ramdout <= transport std_logic_vector'("01101101001001010011000001100100"); --6D253064
+		-- --------------------
+		WAIT FOR 40 ns; -- Time=880 ns
+		ramdout <= transport std_logic_vector'("01000011001101100011100100000100"); --43363904
+		-- --------------------
+		WAIT FOR 40 ns; -- Time=920 ns
+		ramdout <= transport std_logic_vector'("01010000111010111011100000011001"); --50EBB819
+		-- --------------------
+		WAIT FOR 40 ns; -- Time=960 ns
+		ramdout <= transport std_logic_vector'("10100011000010100100111001010000"); --A30A4E50
+		-- --------------------
+		WAIT FOR 40 ns; -- Time=1000 ns
+		ramdout <= transport std_logic_vector'("11100100111011010100011100111101"); --E4ED473D
+		-- --------------------
+		WAIT FOR 40 ns; -- Time=1040 ns
+		ramdout <= transport std_logic_vector'("11110001000110011100011100111110"); --F119C73E
+		-- --------------------
+		WAIT FOR 40 ns; -- Time=1080 ns
+		ramdout <= transport std_logic_vector'("XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX"); --X
+		-- --------------------
+		WAIT FOR 74 ns; -- Time=1154 ns
+		-- --------------------
+
+		write(TX_OUT, string'("Total[]"));
+		writeline(results, TX_OUT);
+		ASSERT (FALSE) REPORT
+			"Success! Simulation for annotation completed"
+			SEVERITY FAILURE;
+	END PROCESS;
+END testbench_arch;
+
+CONFIGURATION rc5_decrypt_cfg OF testbench IS
+	FOR testbench_arch
+	END FOR;
+END rc5_decrypt_cfg;

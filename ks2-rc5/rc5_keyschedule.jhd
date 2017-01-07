@@ -1,0 +1,2 @@
+MODULE rc5_keyschedule
+   SUBMODULE rol_v_32

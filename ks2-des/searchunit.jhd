@@ -1,0 +1,6 @@
+MODULE searchunit
+   SUBMODULE addr_decode
+   SUBMODULE compare_exact
+   SUBMODULE decryptdes
+   SUBMODULE run_control
+   SUBMODULE sureg

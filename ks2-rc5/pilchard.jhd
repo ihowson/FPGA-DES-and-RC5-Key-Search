@@ -1,0 +1,3 @@
+MODULE pilchard
+   SUBMODULE dll_standard
+   SUBMODULE pcore

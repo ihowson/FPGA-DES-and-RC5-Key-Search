@@ -1,0 +1,135 @@
+JDF F
+// Created by Project Navigator ver 1.0
+PROJECT pil-key-search
+DESIGN pil-key-search Normal
+DEVFAM virtexe
+DEVFAMTIME 1058666634
+DEVICE xcv1000e
+DEVICETIME 1058666634
+DEVPKG hq240
+DEVPKGTIME 1058666634
+DEVSPEED -6
+DEVSPEEDTIME 0
+FLOW XST VHDL
+FLOWTIME 0
+STIMULUS des_tb.vhd Normal
+STIMULUS core_tb_vhd.vhd Normal
+STIMULUS rol_v_32_tbw.tbw Normal
+STIMULUS ror_v_32_tbw.tbw Normal
+STIMULUS desenc_tb.vhd Normal
+STIMULUS rc5_decrypt_top_tb.vhd Normal
+STIMULUS compare_exact_tb.tbw Normal
+STIMULUS rc5_keyschedule_tbw.tbw Normal
+STIMULUS keygen_rc5_72_tb.vhd Normal
+STIMULUS core_cmd_decode_tbw.tbw Normal
+STIMULUS status_reg_tb.vhd Normal
+STIMULUS core_tb.tbw Normal
+STIMULUS rc5_decrypt_top_tbw.tbw Normal
+STIMULUS decrypt_des_tbw.tbw Normal
+STIMULUS keysched_tbw.tbw Normal
+STIMULUS keybuffer_tb.vhd Normal
+STIMULUS pcore_tb.vhd Normal
+STIMULUS core_status_reg_tb.tbw Normal
+STIMULUS keygen_count_tb.tbw Normal
+STIMULUS core_controller_tb.vhd Normal
+STIMULUS rc5_decrypt_tbw.tbw Normal
+MODULE reg32.vhd
+MODSTYLE reg32 Normal
+MODULE core_controller.vhd
+MODSTYLE core_controller Normal
+MODULE reg5.vhd
+MODSTYLE reg5 Normal
+MODULE status_pulldown.vhd
+MODSTYLE status_pulldown Normal
+MODULE rc5_ram.vhd
+MODSTYLE rc5_ram Normal
+MODULE core_status_reg.vhd
+MODSTYLE core_status_reg Normal
+MODULE decrypt_wrapper.vhd
+MODSTYLE decrypt_wrapper Normal
+MODULE run_control.vhd
+MODSTYLE run_control Normal
+MODULE addr_terminate.vhd
+MODSTYLE addr_terminate Normal
+MODULE des_lib.vhd
+MODSTYLE m2_1 Normal
+MODSTYLE fd Normal
+MODULE reg5_core_impl.xco
+MODSTYLE reg5_core_impl Normal
+MODULE decrypt.vhd
+MODSTYLE decryptxor Normal
+MODULE unused_terminate.vhd
+MODSTYLE unused_terminate Normal
+MODULE keybuffer.vhd
+MODSTYLE keybuffer Normal
+MODULE rol_v_32.vhd
+MODSTYLE rol_v_32 Normal
+MODULE search_units.vhd
+MODSTYLE search_units Normal
+MODULE pcore.sch
+MODSTYLE pcore Normal
+MODULE rc5_reg32.xco
+MODSTYLE rc5_reg32 Normal
+MODULE ror_v_32.vhd
+MODSTYLE ror_v_32 Normal
+MODULE rc5_keyschedule.vhd
+MODSTYLE rc5_keyschedule Normal
+MODULE keygen_rc5.vhd
+MODSTYLE keygen Normal
+MODULE status_reg.vhd
+MODSTYLE status_reg Normal
+MODULE keygen_count.vhd
+MODSTYLE keygen_count Normal
+MODULE keyfifo.xco
+MODSTYLE keyfifo Normal
+MODULE keygen_reg.vhd
+MODSTYLE keygen_reg Normal
+MODULE core_cmd_decode.vhd
+MODSTYLE core_cmd_decode Normal
+MODULE rc5_decrypt_top.sch
+MODSTYLE rc5_decrypt_top Normal
+MODULE rc5_keysched_sch.sch
+MODSTYLE rc5_keysched_sch Normal
+MODULE compare_exact.vhd
+MODSTYLE compare_exact Normal
+MODULE rc5_decrypt.vhd
+MODSTYLE rc5_decrypt Normal
+MODULE pilchard.vhd
+MODSTYLE pilchard Normal
+MODULE des_pc0.vhd
+MODSTYLE s3 Normal
+MODSTYLE s4 Normal
+MODSTYLE s5 Normal
+MODSTYLE pc1 Normal
+MODSTYLE pc2 Normal
+MODSTYLE s6 Normal
+MODSTYLE s7 Normal
+MODSTYLE s8 Normal
+MODSTYLE s1 Normal
+MODSTYLE s2 Normal
+MODULE des_pc1.vhd
+MODSTYLE ip Normal
+MODSTYLE xp Normal
+MODSTYLE desxor1 Normal
+MODSTYLE desxor2 Normal
+MODSTYLE pp Normal
+MODSTYLE keysched Normal
+MODULE des_pc2.vhd
+MODSTYLE roundfunc Normal
+MODSTYLE fp Normal
+MODULE des_pc3.vhd
+MODSTYLE decryptdes Normal
+MODULE core.sch
+MODSTYLE core Normal
+SUBLIB des VhdlLibrary vhdl
+DEPASSOC pilchard cons.ucf Normal
+[Normal]
+p_parGenSimModel=xstvhd, virtexe, Implementation.t_placeAndRouteDes, 1064469283, True
+p_xstHierarchySeparator=xstvhd, virtexe, VHDL.t_synthesize, 1063534213, /
+xilxPARdetailedReport=xstvhd, virtexe, Implementation.t_placeAndRouteDes, 1064469283, True
+xilxPAReffortLevel=xstvhd, virtexe, Implementation.t_placeAndRouteDes, 1064469283, Highest
+_SynthOptEffort=xstvhd, virtexe, VHDL.t_synthesize, 1063534213, High
+[STATUS-ALL]
+rc5_decrypt.vhd.jhdFile=WARNINGS,1067248933
+[STRATEGY-LIST]
+Normal=True

@@ -1,0 +1,10 @@
+# Output products list for <reg5_core_impl>
+reg5_core_impl.asy
+reg5_core_impl.edn
+reg5_core_impl.v
+reg5_core_impl.veo
+reg5_core_impl.vhd
+reg5_core_impl.vho
+reg5_core_impl.xco
+reg5_core_impl.xcp
+reg5_core_impl.sym

@@ -1,0 +1,10 @@
+# Output products list for <rc5_reg32>
+rc5_reg32.asy
+rc5_reg32.edn
+rc5_reg32.v
+rc5_reg32.veo
+rc5_reg32.vhd
+rc5_reg32.vho
+rc5_reg32.xco
+rc5_reg32.xcp
+rc5_reg32.sym

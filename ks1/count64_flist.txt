@@ -1,0 +1,10 @@
+# Output products list for <count64>
+count64.asy
+count64.edn
+count64.v
+count64.veo
+count64.vhd
+count64.vho
+count64.xco
+count64.xcp
+count64.sym
