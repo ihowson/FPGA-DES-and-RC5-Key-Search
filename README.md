@@ -11,4 +11,4 @@ The paper can be viewed at [https://ianhowson.com/fpga/](https://ianhowson.com/f
 * `ks2-des`: FPGA key search engine 2 for the DES algorithm
 * `ks2-rc5`: FPGA key search engine 2 for the RC5 algorithm
 * `ks2driver`: PC-side driver for key search engine 2
-* `stat`: 
+* `stat`: C source code that generates RAM initialisation values for the statistical comparator
